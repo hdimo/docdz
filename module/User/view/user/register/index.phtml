@@ -1,23 +1,19 @@
-<?php $this->headStyle()->captureStart(); ?>
-@media screen and (max-width: 980px){
-.f-row .full-width, .f-row .one-half, .f-row .one-third, .f-row .one-fourth, .f-row .one-fifth, .f-row .one-sixth {
-padding: 0 0 0px;
-}
-.one-third label{
-padding-top: 15px;
-}
+
 <?php
 $this->headStyle()->captureEnd();
 
 $form = $this->registerForm;
 ?>
 
-<div class="wrap">
+<div class="container">
 
     <div class="row">
 
+
+
         <?php
         $form->setAttribute("action", $this->url('user', ["controller" => "register", "action" => "process"]));
+        $form->setAttribute("class", "form-horizontal");
         $form->prepare();
         ?>
 
@@ -41,129 +37,66 @@ $form = $this->registerForm;
 
 
         <!--- Content -->
-        <div class=" two-third">
+        <div class="col-md-3">
             <!--Login-->
             <div class="box">
 
 
-                <div class="one box">
-                    <h4>Pas encore membre ? Inscrivez-vous gratuitement</h4>
+                <div class="">
+                    <p>Pas encore membre ? Inscrivez-vous gratuitement</p>
                 </div>
-
-
-                <div class="one box">
-                    <p>En 2 secondes avec </p>
-
-                    <div class="full-width">
-                        <a href="<?= $this->basePath('oauth', ['type' => 'facebook']) ?>"
-                           class="btn color medium ">
-                            <span class="fa fa-facebook-official"></span> inscriver vous avec facebook
-                        </a>
-                    </div>
-                </div>
-
+                
                 <hr>
-                <h4>en 30 secondes avec une adresse email</h4>
+                <p>en 30 secondes avec une adresse email</p>
 
                 <?php echo $this->form()->openTag($form); ?>
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="name">Genre</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('gender')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="name">Genre</label>                    
+                    <?= $this->formelement($form->get('gender')->setAttribute('class', 'form-control')); ?>
                 </div>
 
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="name">Last name</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('lastname')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="name">Last name</label>
+                    <?= $this->formelement($form->get('lastname')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="email">First name</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('firstname')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="email">First name</label>                    
+                    <?= $this->formelement($form->get('firstname')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password">Your Email</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('email')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="password">Your Email</label>                    
+                    <?= $this->formelement($form->get('email')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password">Your Mobile (verification with phone)</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('phone')); ?>
-                    </div>
+                <div class="form-group">
+                    <label for="password">Your Mobile (verification with phone)</label>                    
+                    <?= $this->formelement($form->get('phone')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password2">type a password</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('password')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="password2">type a password</label>                    
+                    <?= $this->formelement($form->get('password')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password2">Confirm your password</label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('confirm_password')); ?>
-                    </div>
+                <div class="form-group">                    
+                    <label for="password2">Confirm your password</label>                    
+                    <?= $this->formelement($form->get('confirm_password')->setAttribute('class', 'form-control')); ?>                    
                 </div>
 
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password2">Année de naissance </label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('birthyear')); ?>
-                    </div>
+                <div class="form-group">
+                    <label for="password2">Année de naissance </label>                    
+                    <?= $this->formelement($form->get('birthyear')->setAttribute('class', 'form-control')); ?>                    
                 </div>
-
-                <div class="f-row">
-                    <div class="one-third">
-                        <label for="password2">Année de naissance </label>
-                    </div>
-                    <div class="two-third">
-                        <?= $this->formelement($form->get('captcha')); ?>
-                    </div>
+                
+                <div class="form-group">                    
+                    <input type="submit" value="Create an account" class="btn btn-primary">                    
                 </div>
-
-                <div class="f-row">
-                    <div class="full-width check">
-                        <div class="checker" id="uniform-checkbox"><span><input type="checkbox" id="checkbox"></span>
-                        </div>
-                        <label for="checkbox">I agree with terms and conditions.</label>
-                    </div>
-                </div>
-                <div class="f-row">
-                    <div class="full-width">
-                        <input type="submit" value="Create an account" class="btn color medium full">
-                    </div>
-                </div>
-
 
                 <p>Already have an account? <a href="<?php echo $this->url('user') ?>">Login</a>.</p>
                 <?= $this->form()->closeTag(); ?>
