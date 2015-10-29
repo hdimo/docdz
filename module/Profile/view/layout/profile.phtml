@@ -1,0 +1,33 @@
+<aside class="one-fourth sidebar left" style="margin-top: 10px">
+    <div class="widget">
+        <ul class="categories">
+            <li <?= $this->controllerName == 'Index' ? "class='active'" : '' ?> >
+                <a href="<?= $this->url('board/usr', ['controller' => 'index', 'action' => 'index']) ?>">
+                    Mes Infos
+                </a>
+            </li>
+            <li <?= $this->controllerName == 'Changepwd' ? "class='active'" : '' ?> >
+                <a href="<?= $this->url('board/usr', ['controller' => 'changepwd', 'action' => 'index']) ?>">
+                    Changer mot passe
+                </a>
+            </li>
+            <li <?= $this->controllerName == 'Photo' ? "class='active'" : '' ?> >
+                <a href="<?= $this->url('board/usr', ['controller' => 'photo', 'action' => 'index']) ?>">
+                    Photo
+                </a>
+            </li>
+            <li <?= $this->controllerName == 'Verification' ? "class='active'" : '' ?> >
+                <a href="<?= $this->url('board/usr', ['controller' => 'verification', 'action' => 'index']) ?>">
+                    Verification
+                </a>
+            </li>
+            <li <?= $this->controllerName == 'Mycar' ? "class='active'" : '' ?> >
+                <a href="<?= $this->url('board/usr', ['controller' => 'mycar', 'action' => 'index']) ?>">
+                    Mes voitures
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+

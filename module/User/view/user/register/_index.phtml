@@ -1,0 +1,124 @@
+<?php
+$form = $this->registerForm;
+?>
+
+<div class="wrap">
+
+    <div class="row">
+
+        <?php
+        $form->setAttribute("action", $this->url('user', ["controller" => "register", "action" => "process"]));
+        $form->prepare();
+        ?>
+
+        <?php if ($this->accountExistError): ?>
+            <div class="red box">
+                Account exist
+            </div>
+        <?php endif; ?>
+
+        <?php if ($this->passwordError): ?>
+            <div >
+                les mot de passe ne sans pas les meme
+            </div>
+        <?php endif; ?>
+
+        <?php if ($this->formError): ?>
+            <div>
+                Verfie les champs
+            </div>
+        <?php endif; ?>
+
+
+        <!--- Content -->
+        <div class=" one-half modal">
+            <!--Login-->
+            <div class="box">
+
+
+                <div class="one box">
+                    <h4>Pas encore membre ? Inscrivez-vous gratuitement</h4>
+                </div>
+
+
+                <div class="one box">
+                    <p>En 2 secondes avec </p>
+                    <div class="one-half">
+                        <a href="#" class="btn color medium full"><span class="fa fa-facebook-official"></span> facebook</a>
+                    </div>
+                    <div class="one-half">
+                        <a href="#" class="btn red medium full"><span class="fa fa-google-plus"></span> google +</a>
+                    </div>
+                </div>
+
+                <hr>
+                <h4>en 30 secondes avec une adresse email</h4>
+
+                <?php echo $this->form()->openTag($form); ?>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="name">Last name</label>
+                        <?= $this->formelement($form->get('lastname')); ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="email">First name</label>
+                        <?= $this->formelement($form->get('firstname')); ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password">Your Email</label>
+                        <?= $this->formelement($form->get('email')); ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password2">type a password</label>
+                        <?= $this->formelement($form->get('password')); ?>
+                    </div>
+                </div>
+
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password2">Confirm your password</label>
+                        <?= $this->formelement($form->get('confirm_password')); ?>
+                    </div>
+                </div>
+
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password2">Your tel (verification with tel)</label>
+                        <?= $this->formelement($form->get('mobile')); ?>
+                    </div>
+                </div>
+
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password2">Année de naissance </label>
+                        <?= $this->formelement($form->get('birthyear')); ?>
+                    </div>
+                </div>
+
+                <div class="f-row">
+                    <div class="full-width check">
+                        <div class="checker" id="uniform-checkbox"><span><input type="checkbox" id="checkbox"></span>
+                        </div>
+                        <label for="checkbox">I agree with terms and conditions.</label>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <input type="submit" value="Create an account" class="btn color medium full">
+                    </div>
+                </div>
+
+                <p>Already have an account? <a href="<?php echo $this->url('user') ?>">Login</a>.</p>
+                <?= $this->form()->closeTag(); ?>
+            </div>
+            <!--//Login-->
+        </div>
+        <!--- //Content -->
+    </div>
+</div>

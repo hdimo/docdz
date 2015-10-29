@@ -1,0 +1,42 @@
+<div class="wrap">
+    <div class="row">
+        <div class="full-width content text-center " style="padding: 0 15px 0px;">
+
+            <ul class="nav nav-tabs nav-justified">
+                <li class="board-home">
+                    <a href="<?= $this->url('board/usr', ["controller"=>"index", "action"=>"index"]) ?>">
+                        <i class="glyphicon glyphicon glyphicon glyphicon-dashboard "></i> Infos
+                    </a>
+                </li>
+                <li class="board-booking">
+                    <a href="<?= $this->url('board/booking', ["controller"=>"index", "action"=>"index"]) ?>" >
+                        <i class="glyphicon glyphicon glyphicon glyphicon-ok"></i> Reservation
+                    </a>
+                </li>
+                <li class="board-traject">
+                    <a href="<?= $this->url('board/traject', ["controller"=>"user-list", "action"=>"index"]) ?>" >
+                        <i class="glyphicon glyphicon glyphicon-tag"></i> Annonces
+                    </a>
+                </li>
+                <li class="board-usr">
+                    <a href="<?= $this->url('board/usr', ["controller"=>"index", "action"=>"index"]) ?>">
+                        <i class="glyphicon glyphicon glyphicon-cog"></i> Paramettre
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<?php
+$this->inlineScript()->captureStart();
+$class = str_replace("/","-",$this->routeParamsHelper());
+echo <<<JS
+    $(function(){
+        $('.{$class}').addClass("active");
+    });
+JS;
+$this->inlineScript()->captureEnd();
+?>

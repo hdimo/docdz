@@ -1,0 +1,57 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle('Dr. Dz ')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles --
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700">
+          -->
+    <?php
+    echo $this->headLink()
+
+        ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
+        ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
+        ->prependStylesheet($this->basePath('css/flexslider/flexslider-post.css'))
+
+        ->prependStylesheet($this->basePath('css/meanmenu/meanmenu.css'))
+        ->prependStylesheet($this->basePath('js/wow/css/libs/animate.css'))
+        ->prependStylesheet($this->basePath('css/tyicons/typicons.min.css'))
+        ->prependStylesheet($this->basePath('js/owl-carousel/awl.carousel.css'))
+
+        ->prependStylesheet($this->basePath('css/superfish/master.css'))
+        ->prependStylesheet($this->basePath('css/master.css'))
+        ->prependStylesheet($this->basePath('bootstrap/css/bootstrap.css'))
+        ->prependStylesheet($this->basePath('css/fontawsome/font-awesome.min.css'));
+
+    echo $this->headStyle()
+    ?>
+</head>
+
+<body>
+
+
+<?= $this->content ?>
+
+
+<!-- Scripts -->
+<?php echo $this->headScript()
+    ->prependFile($this->basePath('js/scripts.js'))
+    ->prependFile($this->basePath('js/wow.min.js'))
+    ->prependFile($this->basePath('js/bootstrap.min.js'))
+    ->prependFile($this->basePath('js/jquery.js'))
+    ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', ['conditional' => 'lt IE 9',])
+    ->prependFile($this->basePath('js/html5shiv.js'), 'text/javascript', ['conditional' => 'lt IE 9',]);
+?>
+<!-- inline script -->
+<?php echo $this->inlineScript() ?>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<?php
+
+$user = $this->identity();
+
+?>
+<div class="wrap">
+    <div class="row">
+
+        <?= $this->partial($this->layout_helper('profile')); ?>
+
+        <div class="three-fourth">
+            <div class="box">
+                <h3>Information utilisateur</h3>
+
+                <?php if($this->error):?>
+                <div class="alert alert-danger">
+                    <p>Error lors de modification de mot de passe</p>
+                </div>
+                <?php endif;?>
+
+                <?php if($this->success):?>
+                    <div class="alert alert-success">
+                        <p>modification avec succe&eacute;</p>
+                    </div>
+                <?php endif;?>
+
+                <?php
+                $form = $this->form;
+                $form->setAttributes([
+                    'action'=>$this->url('board/usr', ['controller'=>'changepwd', 'action'=>'process']),
+                    'method'=>'post'
+                ]);
+                $form->prepare();
+                ?>
+
+                <div class="full-width">
+
+                    <?= $this->form()->openTag($form) ?>
+
+                    <div class="f-row">
+                        <div class="one-third">Mot de passe actuel</div>
+                        <div class="one-third"><input type="password" name="currentPassword" /> </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-third">Nouveau mot de passe</div>
+                        <div class="one-third">
+                            <?= $this->formelement($form->get('password')); ?>
+                            <?php
+                            if($this->msg) {
+                                foreach ($this->msg as $msg) {
+                                    echo $msg;
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-third">Confirmez le nouveau</div>
+                        <div class="one-third">
+                            <?= $this->formelement($form->get('confirm_password')); ?>
+                        </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="full-width"><button class="btn btn-lg btn-primary right">update</button></div>
+                    </div>
+
+                    <?= $this->form()->closeTag() ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

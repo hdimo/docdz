@@ -1,0 +1,24 @@
+{
+    "name": "cars",
+    "description": "car sharing application based on ZF2",
+    "keywords": [
+        "framework",
+        "zf2",
+        "ORM"
+    ],
+    "homepage": "http://edini.com/",
+    "require-dev":{
+        "zendframework/zend-developer-tools": "dev-master",
+        "snapshotpl/zf-snap-event-debugger": "1.*",
+        "san/san-session-toolbar": "0.*",
+        "ocramius/ocra-service-manager": "^2.1",
+        "phpunit/phpunit": "^4.7"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.4.*",
+        "Zendframework/zendservice-recaptcha": "2.*",
+        "silvester/reverse-oauth2": "dev-master",
+        "doctrine/doctrine-orm-module": "0.8.*"
+    }
+}

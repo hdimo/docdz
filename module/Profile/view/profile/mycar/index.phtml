@@ -1,0 +1,80 @@
+<?php $user = $this->identity(); ?>
+<div class="wrap">
+    <div class="row">
+        <?= $this->render($this->layout_helper('profile')); ?>
+        <div class="three-fourth">
+            <div class="box">
+                <h3>Details de voiture</h3>
+                <?php if ($this->success): ?>
+                    <div class="alert alert-success">
+                        success
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->error): ?>
+                    <div class="alert alert-danger">
+                        <p><?php foreach ($this->errorMsg as $msg) echo $msg; ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($user->getCars()->count() == 0): ?>
+                    <?= $this->displayMessage("vous ne posserdez pas encore de vehicule", "danger") ?>
+                <?php else: ?>
+                    <?php
+                        $mycar = $user->getCars()->last();
+                    ?>
+                    <div class="one-fourth">
+                        <img src="/images/<?= $mycar->getImage() ?>" />
+                    </div>
+                    <div class="three-fourth">
+                        <p><strong>Marque</strong> : <?= $mycar->getBrand() ?></p>
+                        <p><strong>Confort</strong> : <?= $mycar->getRate() ?>/5</p>
+                    </div>
+
+                <?php endif; ?>
+
+                <?php
+                    $form = $this->form;
+                    $form->setAttributes([
+                        'class'=> 'horizontal-form',
+                        'action'=>$this->url('board/usr', ['controller'=>'mycar', 'action'=>'process']),
+                        'enctype' => "multipart/form-data"
+                    ]);
+                    $form->prepare();
+                ?>
+
+                <?= $this->form()->openTag($form) ?>
+
+                <div class="f-row">
+                    <h3>Ajouter ou changer une nouvelle voiture</h3>
+                    <div class="one-fourth">Marque de la voiture</div>
+                    <div class="three-fourth">
+                        <?= $this->formelement($form->get('brand')); ?>
+                        <?= $this->formelementerrors($form->get('brand')) ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="one-fourth">confort </div>
+                    <div class="one-half">
+                        <?= $this->formelement($form->get('rate')); ?>
+                        <?= $this->formelementerrors($form->get('rate')) ?>
+                    </div>
+                    <div class="one-fourth">(note sur 5)</div>
+                </div>
+                <div class="f-row">
+                    <div class="one-fourth">Photo de voiture</div>
+                    <div class="three-fourth">
+                        <?= $this->formelement($form->get('file')); ?>
+                        <?= $this->formelementerrors($form->get('file')) ?>
+                    </div>
+                </div>
+
+                <div class="f-row">
+                    <button class="btn btn-primary right">Envoyer</button>
+                </div>
+
+                <?= $this->form()->closeTag()?>
+
+            </div>
+        </div>
+    </div>
+</div>

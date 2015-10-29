@@ -1,0 +1,86 @@
+<?php $user = $this->identity();?>
+
+<div class="wrap">
+    <div class="row">
+
+        <?php // echo $this->profileLayout;?>
+
+        <?= $this->render($this->layout_helper('profile')); ?>
+
+        <div class="three-fourth">
+            <div class="box">
+                <h3>Information utilisateur</h3>
+                <?php
+                    $form = $this->form;
+                    $form->setAttributes([
+                        'action'=>$this->url('board/usr', ['controller'=>'index', 'action'=>'process']),
+                        'methid'=>'post'
+                    ]);
+                ?>
+
+                <div class="three-fourth">
+                    <?php if($this->error === 1):?>
+                        <div class="alert alert-danger">
+                            <p>erreur lors de mise a jour, <br> verifier les champs</p>
+                        </div>
+                    <?php elseif($this->error === 0 ):?>
+                        <div class="alert alert-success">
+                            <p>mise a jour avec succe&eacute; </p>
+                        </div>
+                    <?php endif;?>
+                </div>
+
+                <div class="two-third">
+                    <?= $this->form()->openTag($form) ?>
+                    <div class="f-row">
+                        <div class="one-fourth">Nom</div>
+                        <div class="three-fourth">
+                            <?= $this->formelement($form->get('lastname')); ?>
+                            <?= $this->formelementerrors($form->get('lastname')) ?>
+                        </div>
+                    </div>
+                    <div class="f-row">
+                        <div class="one-fourth">Prenom</div>
+                        <div class="three-fourth">
+                            <?= $this->formelement($form->get('firstname')); ?>
+                            <?= $this->formelementerrors($form->get('firstname')) ?>
+                        </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-fourth">Mobile</div>
+                        <div class="three-fourth">
+                            <?= $this->formelement($form->get('phone')); ?>
+                            <?= $this->formelementerrors($form->get('phone')) ?>
+                        </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-fourth">Email</div>
+                        <div class="three-fourth">
+                            <?= $this->formelement($form->get('email')); ?>
+                            <?= $this->formelementerrors($form->get('email')) ?>
+                        </div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-fourth">Genre</div>
+                        <div class="three-fourth"><?= $user->getGenderByName() ?></div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="one-fourth">Ann&eacute;e de naissance</div>
+                        <div class="three-fourth"><?= $user->getBirthYear(); ?></div>
+                    </div>
+
+                    <div class="f-row">
+                        <div class="full-width"><button class="btn btn-lg btn-primary right">update</button></div>
+                    </div>
+                    <?= $this->form()->closeTag() ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<?php $user = $this->identity(); ?>
+<div class="wrap">
+    <div class="row">
+        <?= $this->render($this->layout_helper('profile')); ?>
+        <div class="three-fourth">
+            <form class="box readonly">
+                <h3>Verification </h3>
+                <div class="f-row">
+                    <table class="data responsive">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Verification par Email
+                            </td>
+                            <td>
+                                <?= $user->getEmail() ?>
+                            </td>
+                            <td>
+                                <?php if ($user->isEmailVerified()): ?>
+                                    <span class="glyphicon  glyphicon-ok-sign"></span>
+                                <?php else: ?>
+                                    <span style="color: red" class="glyphicon glyphicon-remove-sign"></span>
+                                    <a href="#" class="btn btn-sm  btn-primary">Verifier</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Verification par Telephone
+                            </td>
+                            <td>
+                                <?= $user->getPhone() ?>
+                            </td>
+                            <td>
+                                <?php if ($user->isPhoneVerified()): ?>
+                                    <span class="glyphicon  glyphicon-ok-sign"></span>
+                                <?php else: ?>
+                                    <span style="color: red" class="glyphicon glyphicon-remove-sign"></span>
+                                    <a href="#" class="btn btn-sm  btn-primary">Verifier</a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <?php // $this->displayMessage('danger', 'hello world') ?>
+        </div>
+    </div>
+</div>
+

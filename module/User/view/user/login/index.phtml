@@ -1,0 +1,67 @@
+<div class="wrap">
+    <div class="row">
+        <!--- Content -->
+        <div class="content two-third center-block">
+
+
+
+            <!--Login-->
+            <div class="box">
+
+                <div class="row">
+                    <h3>Connecter rapidement avec</h3>
+                    <div class="full-width">
+                        <a href="<?= $this->basePath('oauth', ['type'=>'facebook']) ?>" class="btn color medium center">
+                            <span class="fa fa-facebook-official"></span> connexion avec compte facebook
+                        </a>
+                    </div>
+                </div>
+
+                <hr>
+                <?php if (isset($isLoginError)): ?>
+                    <div>Error login</div>
+                <?php endif; ?>
+
+                <?php
+                $form = $this->form;
+                $form->setAttribute('action', $this->url('user', ['controller' => 'login', 'action' => 'process']));
+                $form->prepare();
+                echo $this->form()->openTag($form);
+                ?>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="username">Your username</label>
+                        <?php echo $this->formelement($form->get('email')); ?>
+                        <?php echo $this->formelementerrors($form->get('email')); ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <label for="password">Your password</label>
+                        <?php echo $this->formelement($form->get('password')); ?>
+                        <?php echo $this->formelementerrors($form->get('password')); ?>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width check">
+                        <input type="checkbox" id="checkbox"/>
+                        <label for="checkbox">Remember me next time</label>
+                    </div>
+                </div>
+                <div class="f-row">
+                    <div class="full-width">
+                        <input type="submit" value="Login" class="btn color medium full"/>
+                    </div>
+                </div>
+                <?php echo $this->form()->closeTag(); ?>
+
+                <p>
+                    <a href="#">Forgotten password?</a><br/>Dont have an account yet?
+                    <a href="<?= $this->url('user', ['controller' => 'register']) ?>">Sign up</a>
+                </p>
+
+            </div>
+            <!--//Login-->
+        </div>
+
+  </div>

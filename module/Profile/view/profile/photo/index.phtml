@@ -1,0 +1,39 @@
+<?php $user = $this->identity(); ?>
+<div class="wrap">
+    <div class="row">
+        <?= $this->render($this->layout_helper('profile')); ?>
+        <div class="three-fourth">
+            <div class="box">
+                <h3>Information utilisateur</h3>
+                <?php if ($this->success): ?>
+                    <div class="alert alert-success">
+                        success
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->error): ?>
+                    <div class="alert alert-danger">
+                        <p><?php foreach ($this->errorMsg as $msg) echo $msg; ?></p>
+                    </div>
+                <?php endif; ?>
+                <?php
+                $form = $this->form;
+                $form->setAttributes([
+                    'action' => $this->url('board/usr', ['controller' => 'photo', 'action' => 'process']),
+                    'enctype' => "multipart/form-data",
+                    'method' => 'post'
+                ]);
+                $form->prepare();
+                ?>
+                <?= $this->form()->openTag($form) ?>
+                <div class="one-third">
+                    <img src="/images/avatars/<?= $user->getImage() ?>"/>
+                </div>
+                <div class="two-third">
+                    <?= $this->formelement($form->get('file')) ?>
+                    <input type="submit" value="upload" class="btn btn-primary"/>
+                </div>
+                <?= $this->form()->closeTag() ?>
+            </div>
+        </div>
+    </div>
+</div>
