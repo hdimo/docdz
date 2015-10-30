@@ -11,26 +11,24 @@
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
     ?>
 
-    <!-- Le styles --
-    <link rel="stylesheet"
-          href="http://fonts.googleapis.com/css?family=Raleway:400,500,600,700|Montserrat:400,700">
-          -->
+
+    <link rel="stylesheet" href="/css/google-relay-font.css">
+
     <?php
     echo $this->headLink()
 
         ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
         ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
-        ->prependStylesheet($this->basePath('css/flexslider/flexslider-post.css'))
+        ->prependStylesheet($this->basePath('js/flexslider/flexslider-post.css'))
 
-        ->prependStylesheet($this->basePath('css/meanmenu/meanmenu.css'))
-        ->prependStylesheet($this->basePath('js/wow/css/libs/animate.css'))
-        ->prependStylesheet($this->basePath('css/tyicons/typicons.min.css'))
-        ->prependStylesheet($this->basePath('js/owl-carousel/awl.carousel.css'))
+        ->prependStylesheet($this->basePath('js/meanmenu/meanmenu.css'))
+        ->prependStylesheet($this->basePath('css/typicons/typicons.min.css'))
+        ->prependStylesheet($this->basePath('js/owl-carousel/owl.carousel.css'))
 
-        ->prependStylesheet($this->basePath('css/superfish/master.css'))
+        ->prependStylesheet($this->basePath('css/superfish/superfish.css'))
         ->prependStylesheet($this->basePath('css/master.css'))
         ->prependStylesheet($this->basePath('bootstrap3/css/bootstrap.css'))
-        ->prependStylesheet($this->basePath('css/fontawsome/font-awesome.min.css'));
+        ->prependStylesheet($this->basePath('css/fontawesome/font-awesome.min.css'));
 
     echo $this->headStyle()
     ?>
@@ -39,15 +37,114 @@
 <body>
 
 
-<?= $this->content ?>
+<div class="wrapper">
+
+    <header>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="pm-header-logo-container">
+                        <a href="index.html"><img src="img/medical-link.jpg" class="img-responsive pm-header-logo" alt="Medical-Link Template"></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <ul class="pm-header-info">
+                        <li><p><i class="fa fa-mobile-phone"></i> + 213 551 64 74 89</p></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <div class="pm-nav-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12">
+                    <nav class="navbar-collapse collapse" id="pm-main-navigation" style="display: block;">
+                        <ul class="sf-menu pm-nav sf-js-enabled">
+                            <li><a href="index.html" class="fa fa-home" id="pm-home-btn"></a></li>
+                            <li><a href="contact-us.html">List des Patient</a></li>
+                            <li><a href="contact-us.html">Patient encours</a></li>
+                            <li><a href="<?= $this->url('patient/default', ['controller'=>'new']) ?>">Nouveau Patient</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-12 pm-main-menu">
+                    <ul class="pm-cart-info">
+                        <li><a href="cart.html" class="typcn typcn-document"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pm-sub-header-container">
+
+        <div class="pm-sub-header-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="pm-page-title">News</p>
+                        <p class="pm-page-message">Keeping you up to date on the latest news in the medical world </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+
+
+    <?= $this->content ?>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container pm-containerPadding20">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-12 pm-center-mobile">
+                    <img src="img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline" alt="Medical-Link">
+                </div>
+
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <ul class="pm-footer-navigation l_tinynav1">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="store.html">Store</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+    </footer>
+
+</div>
+
+
+
+
 
 
 <!-- Scripts -->
 <?php echo $this->headScript()
-    ->prependFile($this->basePath('js/scripts.js'))
-    ->prependFile($this->basePath('js/wow.min.js'))
-    ->prependFile($this->basePath('js/bootstrap.min.js'))
+    ->prependFile($this->basePath('js/script.js'))
+    ->prependFile($this->basePath('js/superfish/superfish.js'))
+    ->prependFile($this->basePath('bootstrap3/js/bootstrap.min.js'))
     ->prependFile($this->basePath('js/jquery-2.1.3.min.js'))
+
     ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', ['conditional' => 'lt IE 9',])
     ->prependFile($this->basePath('js/html5shiv.js'), 'text/javascript', ['conditional' => 'lt IE 9',]);
 ?>

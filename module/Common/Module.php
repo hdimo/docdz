@@ -34,6 +34,8 @@ class Module {
      * @param Zend\Mvc\MvcEvent $e
      */
     public function onBootstrap($e){
+
+        /*
         $app = $e->getTarget();
         $serviceManager  = $app->getServiceManager();
         $eventManager = $app->getEventManager();
@@ -45,7 +47,7 @@ class Module {
             $viewHelper = new \Common\View\Helper\RouteParamsHelper($e->getRouteMatch());
             return $viewHelper;
         });
-
+        */
 
     }
 }

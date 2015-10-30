@@ -9,11 +9,13 @@ $modules = array(
 
     'Application',
     'Contact',
-
     'Common',
+
     'Board',
     'User',
     'Profile',
+
+    'Patient',
 
 );
 
