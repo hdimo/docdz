@@ -16,35 +16,48 @@ use Zend\View\Model\ViewModel;
 class NewController extends PatientBaseController
 {
 
-    public function indexAction(){
+    public function indexAction()
+    {
         $form = new NewPatientForm();
 
 
         $var = [
-            'form'=>$form
+            'form' => $form,
         ];
         $view = new ViewModel($var);
         return $view;
     }
 
-    public function processAction(){
+    public function processAction()
+    {
 
         $view = new ViewModel();
         $view->setTemplate('patient/new/index');
 
-        $form  = new NewPatientForm();
         $data = $this->params()->fromPost();
-
+        $form = new NewPatientForm();
         $form->setData($data);
 
-        if($form->isValid()){
+        if ($form->isValid()) {
+            $lastInsertedPatientId = $this->serviceLocator->get(\Patient\Service\PatientService::class)
+                ->save($data);
 
+            $this->getServiceLocator()->get(\Patient\Service\QueueService::class)
+                ->push($lastInsertedPatientId);
 
+            $this->redirect()->toRoute('patient/default', ['controller' => 'new', 'action' => 'success']);
         }
+
+        $view->setVariables([
+            'form' => $form,
+        ]);
+        return $view;
     }
 
-    public function successAction(){
-
+    public function successAction()
+    {
+        echo 'success';
+        return false;
     }
 
 }

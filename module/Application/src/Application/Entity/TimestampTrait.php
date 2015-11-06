@@ -11,7 +11,6 @@ namespace Application\Entity;
 
 trait TimestampTrait
 {
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,7 +20,7 @@ trait TimestampTrait
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="datetime")
      */
     protected $createdDate;
 

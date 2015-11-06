@@ -1,6 +1,10 @@
 <?php
 
 $form = $this->form;
+$form->setAttributes([
+   'action'=>$this->url('patient/default',['controller'=>'new', 'action'=>'process']),
+    'method'=>'post'
+]);
 $form->prepare();
 
 ?>
@@ -17,21 +21,25 @@ $form->prepare();
             <div class="form-group">
                 <label>Nom </label>
                 <?= $this->formelement($form->get('lastname')) ?>
+                <?= $this->formElementErrors($form->get('lastname')) ?>
             </div>
 
             <div class="form-group">
                 <label>Prenom </label>
                 <?= $this->formelement($form->get('firstname')) ?>
+                <?= $this->formElementErrors($form->get('firstname')) ?>
             </div>
 
             <div class="form-group">
                 <label>Genre </label>
                 <?= $this->formelement($form->get('gender')) ?>
+                <?= $this->formElementErrors($form->get('gender')) ?>
             </div>
 
             <div class="form-group">
                 <label>Année de naissance </label>
                 <?= $this->formelement($form->get('birthyear')) ?>
+                <?= $this->formElementErrors($form->get('birthyear')) ?>
             </div>
 
         </div>
@@ -40,16 +48,19 @@ $form->prepare();
             <div class="form-group">
                 <label>Numero de telephone (pour contacter) </label>
                 <?= $this->formelement($form->get('phone')) ?>
+                <?= $this->formElementErrors($form->get('phone')) ?>
             </div>
 
             <div class="form-group">
                 <label>Address </label>
                 <?= $this->formelement($form->get('address')) ?>
+                <?= $this->formElementErrors($form->get('address')) ?>
             </div>
 
             <div class="form-group">
                 <label>Entrer le code de verification </label>
                 <?= $this->formelement($form->get('captcha')) ?>
+                <?= $this->formElementErrors($form->get('captcha')) ?>
             </div>
         </div>
 

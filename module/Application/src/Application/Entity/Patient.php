@@ -35,7 +35,7 @@ class Patient {
     /**
      * @ORM\Column(type="integer")
      */
-    protected $age;
+    protected $birthYear;
 
     /**
      * @ORM\Column(type="string")
@@ -55,6 +55,7 @@ class Patient {
 
     public function __construct(){
         $this->consultations = new ArrayCollection();
+        $this->createdDate = new \DateTime();
     }
 
     /**
@@ -108,17 +109,17 @@ class Patient {
     /**
      * @return mixed
      */
-    public function getAge()
+    public function getBirthYear()
     {
-        return $this->age;
+        return $this->birthYear;
     }
 
     /**
-     * @param mixed $age
+     * @param mixed $birthYear
      */
-    public function setAge($age)
+    public function setBirthYear($birthYear)
     {
-        $this->age = $age;
+        $this->birthYear = $birthYear;
     }
 
     /**
@@ -168,8 +169,5 @@ class Patient {
     {
         $this->consultations[] = $consultations;
     }
-
-
-
-
+    
 }

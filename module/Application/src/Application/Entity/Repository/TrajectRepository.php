@@ -13,7 +13,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
-class Patient extends EntityRepository
+class PatientRepository extends EntityRepository
 {
 
 
