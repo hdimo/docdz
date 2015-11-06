@@ -1,0 +1,63 @@
+<?php
+
+$form = $this->form;
+$form->prepare();
+
+?>
+
+<div class="container">
+
+    <?= $this->form()->openTag($form); ?>
+    <div class="row">
+
+        <h3>Ajouter Un nouveau patient a la base de données</h3>
+
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>Nom </label>
+                <?= $this->formelement($form->get('lastname')) ?>
+            </div>
+
+            <div class="form-group">
+                <label>Prenom </label>
+                <?= $this->formelement($form->get('firstname')) ?>
+            </div>
+
+            <div class="form-group">
+                <label>Genre </label>
+                <?= $this->formelement($form->get('gender')) ?>
+            </div>
+
+            <div class="form-group">
+                <label>Année de naissance </label>
+                <?= $this->formelement($form->get('birthyear')) ?>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label>Numero de telephone (pour contacter) </label>
+                <?= $this->formelement($form->get('phone')) ?>
+            </div>
+
+            <div class="form-group">
+                <label>Address </label>
+                <?= $this->formelement($form->get('address')) ?>
+            </div>
+
+            <div class="form-group">
+                <label>Entrer le code de verification </label>
+                <?= $this->formelement($form->get('captcha')) ?>
+            </div>
+        </div>
+
+    </div>
+    <div class="gap"></div>
+    <div class="text-right">
+        <button class="btn btn-lg btn-primary">Ajouter</button>
+    </div>
+    <?php $this->form()->closeTag(); ?>
+
+</div>

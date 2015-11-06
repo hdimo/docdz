@@ -33,20 +33,16 @@
     echo $this->headStyle()
     ?>
 </head>
-
 <body>
-
 
 <div class="wrapper">
 
     <header>
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="pm-header-logo-container">
-                        <a href="index.html"><img src="img/medical-link.jpg" class="img-responsive pm-header-logo" alt="Medical-Link Template"></a>
+                        <a href="/"><img src="/img/medical-link.jpg" class="img-responsive pm-header-logo" alt="Medical-Link Template"></a>
                     </div>
                 </div>
 
@@ -55,17 +51,14 @@
                         <li><p><i class="fa fa-mobile-phone"></i> + 213 551 64 74 89</p></li>
                     </ul>
                 </div>
-
             </div>
-
         </div>
-
     </header>
 
     <div class="pm-nav-container">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-md-10 col-sm-12">
+                <div class="col-md-10">
                     <nav class="navbar-collapse collapse" id="pm-main-navigation" style="display: block;">
                         <ul class="sf-menu pm-nav sf-js-enabled">
                             <li><a href="index.html" class="fa fa-home" id="pm-home-btn"></a></li>
@@ -75,8 +68,7 @@
                         </ul>
                     </nav>
                 </div>
-
-                <div class="col-lg-2 col-md-2 col-sm-12 pm-main-menu">
+                <div class="col-md-2 pm-main-menu">
                     <ul class="pm-cart-info">
                         <li><a href="cart.html" class="typcn typcn-document"></a></li>
                     </ul>
@@ -85,9 +77,7 @@
         </div>
     </div>
 
-
     <div class="pm-sub-header-container">
-
         <div class="pm-sub-header-info">
             <div class="container">
                 <div class="row">
@@ -98,10 +88,8 @@
                 </div>
             </div>
         </div>
-
     </div>
     <hr>
-
 
     <?= $this->content ?>
 
@@ -109,11 +97,9 @@
     <footer>
         <div class="container pm-containerPadding20">
             <div class="row">
-
                 <div class="col-lg-4 col-md-4 col-sm-12 pm-center-mobile">
-                    <img src="img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline" alt="Medical-Link">
+                    <img src="/img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline" alt="Medical-Link">
                 </div>
-
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <ul class="pm-footer-navigation l_tinynav1">
                         <li><a href="index.html" class="active">Home</a></li>
@@ -124,19 +110,10 @@
                         <li><a href="contact-us.html">Contact Us</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-
-
     </footer>
-
 </div>
-
-
-
-
-
 
 <!-- Scripts -->
 <?php echo $this->headScript()

@@ -8,6 +8,8 @@
 
 namespace Patient\Controller;
 
+
+use Application\Entity\Patient;
 use Patient\Form\NewPatientForm;
 use Zend\View\Model\ViewModel;
 
@@ -21,10 +23,27 @@ class NewController extends PatientBaseController
         $var = [
             'form'=>$form
         ];
-        $view = new ViewModel();
+        $view = new ViewModel($var);
+        return $view;
     }
 
     public function processAction(){
+
+        $view = new ViewModel();
+        $view->setTemplate('patient/new/index');
+
+        $form  = new NewPatientForm();
+        $data = $this->params()->fromPost();
+
+        $form->setData($data);
+
+        if($form->isValid()){
+
+
+        }
+    }
+
+    public function successAction(){
 
     }
 

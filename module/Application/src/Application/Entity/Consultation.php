@@ -17,7 +17,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Consultation {
     use TimestampTrait;
 
-
     /**
      * @ORM\Column(type="string")
      */
@@ -36,7 +35,7 @@ class Consultation {
     protected $files;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application\Entity\Patient", inversedBy="consultation")
+     * @ORM\ManyToOne(targetEntity="Application\Entity\Patient", inversedBy="consultations")
      */
     protected $patient;
 

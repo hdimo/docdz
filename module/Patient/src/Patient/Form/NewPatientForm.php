@@ -8,7 +8,9 @@
 
 namespace Patient\Form;
 
+use Zend\Captcha\Figlet;
 use Zend\Form\Form;
+use Zend\Captcha\ReCaptcha;
 
 class NewPatientForm extends Form
 {
@@ -55,6 +57,15 @@ class NewPatientForm extends Form
             ],
         ]);
 
+        $this->add([
+            'name'=>'address',
+            'required'=>true,
+            'attributes'=> [
+                'required'=>'required',
+                'type'=>'textarea',
+            ],
+        ]);
+
         $minBirthYear = (int)date('Y') - 60;
         $maxBirthYear = (int)date('Y') - 18;
         $year = range($minBirthYear, $maxBirthYear);
@@ -69,5 +80,34 @@ class NewPatientForm extends Form
                 'required'=>'required',
             ],
         ]);
+
+        /*pass captcha image options (google recaptcha)
+        $captcha = new ReCaptcha([
+            'private_key'=>'6LeaH_ISAAAAAHl7oQoATqDW-mgUuhcu5FoM1lYe',
+            'public_key'=>'6LeaH_ISAAAAAAYaTNGVGJYjYxrpAHCNW7Q76avX'
+        ]);
+        */
+
+        $captcha = new Figlet(array(
+            'name' => 'foo',
+            'wordLen' => 6,
+            'timeout' => 300,
+        ));
+
+        $this->add([
+            'type' => 'Zend\Form\Element\Captcha',
+            'name' => 'captcha',
+            'options' => [
+                'label' => 'Please verify you are human',
+                'captcha' => $captcha,
+            ],
+            'attributes'=>[
+                'placeholder'=>'Entrer le code',
+            ],
+        ]);
+
+        foreach($this->getElements() as $element)
+            $element->setAttribute('class', 'form-control');
+
     }
 }
