@@ -17,6 +17,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Patient {
     use TimestampTrait;
 
+    const MALE = 1;
+    const FEMALE = 0;
+
+    private $_gendersName = [
+        self::MALE => 'homme',
+        self::FEMALE => 'femme',
+    ];
+
     /**
      * @ORM\Column(type="string")
      */
@@ -104,6 +112,10 @@ class Patient {
     public function setGender($gender)
     {
         $this->gender = $gender;
+    }
+
+    public function getGenderByName(){
+        return $this->_gendersName[$this->getGender()];
     }
 
     /**

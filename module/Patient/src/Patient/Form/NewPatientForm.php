@@ -23,8 +23,8 @@ class NewPatientForm extends Form
             'options' => [
                 'label' => 'Genre',
                 'value_options' => [
-                    'm' => 'Male',
-                    'f' => 'Female',
+                    '1' => 'Male',
+                    '0' => 'Female',
                 ],
             ],
             'attributes'=> [
@@ -66,18 +66,15 @@ class NewPatientForm extends Form
             ],
         ]);
 
-        $minBirthYear = (int)date('Y') - 60;
-        $maxBirthYear = (int)date('Y') - 18;
-        $year = range($minBirthYear, $maxBirthYear);
         $this->add([
             'name'=>'birthyear',
-            'type'=>'Zend\Form\Element\Select',
+            'type'=>'Text',
             'options' => [
                 'label' => 'BirthYear',
-                'value_options' => $year,
             ],
             'attributes'=> [
                 'required'=>'required',
+                'placeholder'=>"example : 1988"
             ],
         ]);
 
@@ -90,7 +87,7 @@ class NewPatientForm extends Form
 
         $captcha = new Figlet(array(
             'name' => 'foo',
-            'wordLen' => 6,
+            'wordLen' => 3,
             'timeout' => 300,
         ));
 

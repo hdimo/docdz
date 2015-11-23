@@ -14,4 +14,11 @@ use Zend\Mvc\Controller\AbstractActionController;
 class PatientBaseController extends AbstractActionController
 {
 
+
+
+
+    protected function getEntityManager(){
+        return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    }
+
 }

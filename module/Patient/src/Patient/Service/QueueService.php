@@ -51,5 +51,10 @@ class QueueService implements FactoryInterface
         return $list;
     }
 
+    public function getNext(){
+        $current = $this->em->getRepository('Application\Entity\Queue')->getNext();
+        return $current;
+    }
+
 
 }

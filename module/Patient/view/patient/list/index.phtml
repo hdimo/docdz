@@ -11,6 +11,7 @@ $listPatient = $this->listPatients;
 
         <form class="form-horizontal">
             <p>Verifier s'il existe dans la base de données</p>
+
             <div class="col-md-4">
                 <input type="text" class="form-control" id="name" placeholder="Nom Patient ">
             </div>
@@ -27,24 +28,25 @@ $listPatient = $this->listPatients;
             <div class="pm-widget">
                 <div class="pm-sidebar-padding">
                     <ul class="pm-trends-list">
-
-                        <?php foreach($listPatient as $queueRow):?>
+                        <?php foreach ($listPatient as $queueRow): ?>
                             <li>
                                 <a href="#">
-                                    <?= $queueRow->getPatient()->getLastname() ; ?>
-                                    <?= $queueRow->getPatient()->getFirstname() ; ?>
+                                    <?= $queueRow->getPatient()->getLastname(); ?>
+                                    <?= $queueRow->getPatient()->getFirstname(); ?>
                                 </a>
                             </li>
-                        <?php  endforeach;?>
-
-                        <!--
-                        <li><a href="#">Majority of weight loss occurs 'via breathing'</a></li>
-                        -->
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
             <!-- Trends widget end -->
         </div>
+        <div class="col-md-6">
+
+
+        </div>
+
+
     </div>
 
 </div>

@@ -16,7 +16,16 @@ class IndexController extends PatientBaseController
 
     public function indexAction()
     {
-        return new ViewModel();
+        $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
+        $current = $queueService->getNext();
+        $patient = $current->getPatient();
+
+        $lastname = $patient->getLastname();
+
+
+        return new ViewModel([
+            'patient'=>$patient
+        ]);
     }
 
 }

@@ -1,34 +1,56 @@
+<?php
+
+$patient = $this->patient;
+
+?>
+
 <div class="container">
 
     <div class="row">
-        <h5>Liste des patients</h5>
 
-        <form class="form-horizontal">
-            <p>Verifier s'il existe dans la base de données</p>
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="name" placeholder="Nom Patient ">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary btn-block">Ajouter a la liste</button>
-            </div>
-        </form>
     </div>
 
-    <div class="gap"></div>
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Trends widget -->
-            <div class="pm-widget">
-                <div class="pm-sidebar-padding">
-                    <ul class="pm-trends-list">
-                        <li><a href="#">Majority of weight loss occurs 'via breathing'</a></li>
-                        <li><a href="#">Majority of weight loss occurs 'via breathing'</a></li>
-                    </ul>
-                </div>
+    <?php if ($patient): ?>
+        <div class="gap"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Information du Malade </h5>
+                <table class="table">
+                    <tr>
+                        <td>Nom</td>
+                        <td><?= $patient->getLastname() ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Prenom</td>
+                        <td><?= $patient->getFirstname() ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Sex</td>
+                        <td><?= $patient->getGenderByName() ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Année de naissance</td>
+                        <td><?= $patient->getBirthYear() ?></td>
+                    </tr>
+                </table>
             </div>
-            <!-- Trends widget end -->
+
+            <div class="col-md-6">
+                <h5>Consultations </h5>
+
+
+            </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning">Aucun patient en attente </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
 </div>
 
