@@ -9,6 +9,7 @@
 namespace Patient\Controller;
 
 
+use Patient\Form\ConsultationForm;
 use Zend\View\Model\ViewModel;
 
 class IndexController extends PatientBaseController
@@ -22,9 +23,11 @@ class IndexController extends PatientBaseController
 
         $lastname = $patient->getLastname();
 
+        $consultationForm = new ConsultationForm();
 
         return new ViewModel([
-            'patient'=>$patient
+            'patient'=>$patient,
+            'consultationForm'=>$consultationForm,
         ]);
     }
 

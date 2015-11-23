@@ -1,13 +1,11 @@
 <?php
-
 $patient = $this->patient;
-
+$consulations = $patient != null ? $patient->getConsultations() : null;
 ?>
 
 <div class="container">
 
     <div class="row">
-
     </div>
 
     <?php if ($patient): ?>
@@ -40,17 +38,49 @@ $patient = $this->patient;
 
             <div class="col-md-6">
                 <h5>Consultations </h5>
-
+                <?php if ($consulations->count() > 0): ?>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Date de consultation</td>
+                            <td>Titre</td>
+                            <td>Remarque</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($consulations as $consultation): ?>
+                            <tr>
+                                <td><?= $consulation->getCreatedDate() ?></td>
+                                <td><?= $consulation->getTitle() ?></td>
+                                <td><?= $consulation->getDescription() ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <div class="alert alert-info">
+                        <p>Pas de consultation precedentes !</p>
+                    </div>
+                <?php endif; ?>
 
             </div>
         </div>
     <?php else: ?>
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-warning">Aucun patient en attente </div>
+                <div class="alert alert-warning">Aucun patient en attente</div>
             </div>
         </div>
     <?php endif; ?>
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+
+        </div>
+    </div>
 
 </div>
 
