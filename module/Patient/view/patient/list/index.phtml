@@ -9,7 +9,8 @@ $listPatient = $this->listPatients;
         <div class="row">
             <h5>Liste des patients</h5>
 
-            <form action="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>"
+            <form method="post"
+                  action="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>"
                   class="form-horizontal">
                 <p>Verifier s'il existe dans la base de données</p>
 
@@ -32,10 +33,18 @@ $listPatient = $this->listPatients;
                         <ul class="pm-trends-list">
                             <?php foreach ($listPatient as $queueRow): ?>
                                 <li>
-                                    <a href="#">
-                                        <?= $queueRow->getPatient()->getLastname(); ?>
-                                        <?= $queueRow->getPatient()->getFirstname(); ?>
-                                    </a>
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <p>
+                                                <?= $queueRow->getPatient()->getLastname(); ?>
+                                                <?= $queueRow->getPatient()->getFirstname(); ?>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-4 text-right">
+                                            <a href="" class="btn btn-info">detail</a>
+                                            <a href="" class="btn btn-danger">&times;</a>
+                                        </div>
+                                    </div>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
@@ -80,9 +89,11 @@ echo <<<JS
         }
     });
     $('#search').bind('typeahead:select', function(event, data) {
+
+        $('#patientId').val(data.id);
         console.log(data);
     }).bind('typeahead:open', function (event, data) {
-        $('.tt-hint').css('background-image', 'url("/img/ajax-loader.gif")');
+        $('.tt-hint').css('background', ' url("/img/ajax-loader.gif") no-repeat center right');
     }).bind('typeahead:close', function (event, data) {
         $('.tt-hint').css('background-image', '');
     });

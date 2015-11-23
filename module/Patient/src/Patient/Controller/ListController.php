@@ -24,9 +24,14 @@ class ListController extends PatientBaseController
 
     }
 
-
-
-
+    public function addtolistAction(){
+        $patientId = $this->params()->fromPost('patientId');
+        if($patientId) {
+            $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
+            $queueService->push($patientId);
+        }
+        $this->redirect()->toRoute('patient/default', ['controller'=>'list']);
+    }
 
     public function ajaxlistAction(){
         $q = $this->params()->fromQuery('q');
