@@ -4,50 +4,89 @@ $listPatient = $this->listPatients;
 
 ?>
 
-<div class="container">
+    <div class="container">
 
-    <div class="row">
-        <h5>Liste des patients</h5>
+        <div class="row">
+            <h5>Liste des patients</h5>
 
-        <form class="form-horizontal">
-            <p>Verifier s'il existe dans la base de données</p>
+            <form action="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>"
+                  class="form-horizontal">
+                <p>Verifier s'il existe dans la base de données</p>
 
-            <div class="col-md-4">
-                <input type="text" class="form-control" id="name" placeholder="Nom Patient ">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary btn-block">Ajouter a la liste</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="gap"></div>
-    <div class="row">
-        <div class="col-md-6">
-            <!-- Trends widget -->
-            <div class="pm-widget">
-                <div class="pm-sidebar-padding">
-                    <ul class="pm-trends-list">
-                        <?php foreach ($listPatient as $queueRow): ?>
-                            <li>
-                                <a href="#">
-                                    <?= $queueRow->getPatient()->getLastname(); ?>
-                                    <?= $queueRow->getPatient()->getFirstname(); ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                <div class="col-md-4">
+                    <input name="patientId" id="patientId" type="hidden" value="">
+                    <input id="search" type="text" class="form-control typeahead" id="name" placeholder="Nom Patient ">
                 </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary btn-block">Ajouter a la liste</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="gap"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Trends widget -->
+                <div class="pm-widget">
+                    <div class="pm-sidebar-padding">
+                        <ul class="pm-trends-list">
+                            <?php foreach ($listPatient as $queueRow): ?>
+                                <li>
+                                    <a href="#">
+                                        <?= $queueRow->getPatient()->getLastname(); ?>
+                                        <?= $queueRow->getPatient()->getFirstname(); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Trends widget end -->
             </div>
-            <!-- Trends widget end -->
-        </div>
-        <div class="col-md-6">
+            <div class="col-md-6">
+
+
+            </div>
 
 
         </div>
-
 
     </div>
 
-</div>
+<?php $this->inlineScript()->captureStart();
+echo <<<JS
+ var names = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('lastname'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/patient/list/ajaxlist?q=%QUERY',
+            wildcard: '%QUERY'
+        }
+    });
+    $('#search').typeahead(null, {
+        name: '',
+        display: 'lastname',
+        source: names,
+        templates: {
+            empty: [
+                '<div class="empty-message">',
+                'aucun nom correspand',
+                '</div>'
+            ].join(' '),
+            suggestion: function(data) {
+              //  console.log(data);
+                return '<div class="tt-suggestion"><strong>' + data.lastname + '</strong> – ' + data.firstname + '</div>';
+            }
+        }
+    });
+    $('#search').bind('typeahead:select', function(event, data) {
+        console.log(data);
+    }).bind('typeahead:open', function (event, data) {
+        $('.tt-hint').css('background-image', 'url("/img/ajax-loader.gif")');
+    }).bind('typeahead:close', function (event, data) {
+        $('.tt-hint').css('background-image', '');
+    });
+JS;
 
+$this->inlineScript()->captureEnd();
+?>

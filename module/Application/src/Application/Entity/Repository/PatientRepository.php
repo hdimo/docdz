@@ -7,7 +7,19 @@
 namespace Application\Entity\Repository;
 
 
-class PatientRepository
-{
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
+class PatientRepository extends EntityRepository
+{
+    public function getList($name = null)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('p')
+            ->from('\Application\Entity\Patient', 'p')
+            ->where('p.lastname LIKE :lastname')
+            ->setParameter('lastname', '%'.$name.'%');
+        $result = $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        return $result;
+    }
 }

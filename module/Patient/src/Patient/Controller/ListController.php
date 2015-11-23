@@ -24,9 +24,16 @@ class ListController extends PatientBaseController
 
     }
 
-    public function ajaxlistAction(){
-        $patientService =  $this->getServiceLocator()->get(\Patient\Service\PatientService::class);
 
+
+
+
+    public function ajaxlistAction(){
+        $q = $this->params()->fromQuery('q');
+        $patientService =  $this->getServiceLocator()->get(\Patient\Service\PatientService::class);
+        $listPatient = $patientService->getListByName($q);
+        print(json_encode($listPatient));
+        return $this->response;
     }
 
 
