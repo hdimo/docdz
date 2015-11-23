@@ -17,12 +17,15 @@ class ListController extends PatientBaseController
     public function indexAction(){
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
         $todayList = $queueService->getListOfToday();
-
         $view = new ViewModel([
             'listPatients'=>$todayList,
         ]);
-
         return $view;
+
+    }
+
+    public function ajaxlistAction(){
+        $patientService =  $this->getServiceLocator()->get(\Patient\Service\PatientService::class);
 
     }
 

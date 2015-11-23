@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Patient
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Entity\Repository\PatientRepository")
  */
 class Patient {
     use TimestampTrait;

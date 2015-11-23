@@ -17,11 +17,21 @@ class ConsultationForm extends Form
         parent::__construct('consultation');
 
         $this->add([
+            'name'=>'patientId',
+            'required'=>true,
+            'attributes'=> [
+                'type'=>'hidden',
+                'class'=>'form-control',
+            ],
+        ]);
+
+        $this->add([
             'name'=>'title',
             'required'=>true,
             'attributes'=> [
                 'required'=>'required',
                 'type'=>'text',
+                'class'=>'form-control',
             ],
         ]);
 
@@ -31,6 +41,7 @@ class ConsultationForm extends Form
             'attributes'=> [
                 'required'=>'required',
                 'type'=>'textarea',
+                'class'=>'form-control',
             ],
         ]);
     }
