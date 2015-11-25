@@ -1,12 +1,19 @@
 <?php
-$patient = $this->patient;
-$consulations = $patient != null ? $patient->getConsultations() : null;
+
+
 
 $form = $this->form;
 $form->setAttributes([
-    'action'=>$this->url('patient/default', ['controller'=>'new-consultation']),
+    'action'=>$this->url('patient/default', ['controller'=>'add-consultation']),
     'method'=>'post',
 ]);
+
+
+$patient = ($this->current != null) ? $this->current->getPatient() : null ;
+$consulations = $patient != null ? $patient->getConsultations() : null;
+
+
+//$count = $consulations->count();
 
 $form->prepare();
 
@@ -60,9 +67,9 @@ $form->prepare();
                         <tbody>
                         <?php foreach ($consulations as $consultation): ?>
                             <tr>
-                                <td><?= $consulation->getCreatedDate() ?></td>
-                                <td><?= $consulation->getTitle() ?></td>
-                                <td><?= $consulation->getDescription() ?></td>
+                                <td><?php // $consultation->getCreatedDate()- ?></td>
+                                <td><?= $consultation->getTitle() ?></td>
+                                <td><?= $consultation->getDescription() ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -82,18 +89,16 @@ $form->prepare();
                 <h3>Nouvelle Consultation</h3>
                 <?= $this->form()->openTag($form)?>
                 <?= $this->formelement($form->get('patientId')->setValue($patient->getId()))?>
+                <input type="hidden" name="currentId" value="<?= $current->getId() ?>" />
                 <div class="form-group">
                     <label>Titre de consultation </label>
                     <?= $this->formelement($form->get('title'))?>
-                </div>
-                <div class="form-group">
                     <label>Description (remarques)</label>
                     <?= $this->formelement($form->get('description'))?>
                 </div>
                 <div class="text-right">
                     <button class="btn btn-primary">Ajouter</button>
                 </div>
-
                 <?= $this->form()->closeTag()?>
 
             </div>

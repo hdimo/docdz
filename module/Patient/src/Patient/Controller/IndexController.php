@@ -19,11 +19,9 @@ class IndexController extends PatientBaseController
     {
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
         $current = $queueService->getNext();
-        $patient = $current->getPatient();
-        $lastname = $patient->getLastname();
         $consultationForm = new ConsultationForm();
         return new ViewModel([
-            'patient'=>$patient,
+            'current'=>$current,
             'form'=>$consultationForm,
         ]);
     }
@@ -34,6 +32,9 @@ class IndexController extends PatientBaseController
         $form = new ConsultationForm();
         $form->setData($data);
         if($form->isValid()){
+
+
+
 
         }
     }

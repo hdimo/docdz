@@ -42,18 +42,36 @@ class QueueService implements FactoryInterface
         $this->em->flush();
     }
 
-    public function getAll(array $params){
+    public function getAll(array $params)
+    {
 
     }
 
-    public function getListOfToday(){
+    public function getListOfToday()
+    {
         $list = $this->em->getRepository('Application\Entity\Queue')->getListOfToday();
         return $list;
     }
 
-    public function getNext(){
+    public function getNext()
+    {
         $current = $this->em->getRepository('Application\Entity\Queue')->getNext();
         return $current;
+    }
+
+    public function update($queueId, $data)
+    {
+        $current = $this->em->find('Application\Entity\Queue', $queueId);
+        if ($current) {
+            foreach ($data as $property => $newValue) {
+                $setter = 'set'.ucfirst($property);
+                $current->$setter($newValue);
+            }
+            $this->em->persist($current);
+            $this->em->flush();
+            return $current->getId();
+        }
+        return false;
     }
 
 

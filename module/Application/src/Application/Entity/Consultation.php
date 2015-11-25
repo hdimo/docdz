@@ -41,6 +41,7 @@ class Consultation {
 
     public function __construct(){
         $this->files = new ArrayCollection();
+        $this->createdDate = new \DateTime();
     }
 
     /**

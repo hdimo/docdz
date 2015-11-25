@@ -17,6 +17,7 @@ return [
             'Patient\Controller\Index'=>Patient\Controller\IndexController::class,
             'Patient\Controller\New'=>Patient\Controller\NewController::class,
             'Patient\Controller\List'=>Patient\Controller\ListController::class,
+            'Patient\Controller\AddConsultation'=>Patient\Controller\AddConsultationController::class,
         ],
     ],
 
@@ -24,6 +25,7 @@ return [
         'factories'=>[
             Patient\Service\PatientService::class=>Patient\Service\PatientService::class,
             Patient\Service\QueueService::class=>Patient\Service\QueueService::class,
+            Patient\Service\ConsultationService::class=>Patient\Service\ConsultationService::class,
         ]
     ],
 

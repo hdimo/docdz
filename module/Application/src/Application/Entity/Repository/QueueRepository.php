@@ -26,7 +26,9 @@ class QueueRepository extends EntityRepository
             ->where(
                 $qb->expr()->eq('q.workedDay', "'$today'")
             )
-            ->andWhere('q.isWaiting = 1');
+            ->andWhere('q.isWaiting = 1')
+            ->orderBy('q.createdDate', 'ASC');
+
         $result = $qb->getQuery()->getResult();
         return $result;
     }
@@ -40,8 +42,9 @@ class QueueRepository extends EntityRepository
             ->where(
                 $qb->expr()->eq('q.workedDay', "'$today'")
             )
-            ->andWhere('q.isWaiting = 1');
-        $result = $qb->getQuery()->getResult()[0];
+            ->andWhere('q.isWaiting = 1')
+            ->orderBy('q.createdDate', 'ASC');
+        $result = @$qb->getQuery()->getResult()[0];
         return $result;
     }
 
