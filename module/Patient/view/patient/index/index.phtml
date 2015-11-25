@@ -1,7 +1,5 @@
 <?php
 
-
-
 $form = $this->form;
 $form->setAttributes([
     'action'=>$this->url('patient/default', ['controller'=>'add-consultation']),
@@ -11,13 +9,7 @@ $form->setAttributes([
 
 $patient = ($this->current != null) ? $this->current->getPatient() : null ;
 $consulations = $patient != null ? $patient->getConsultations() : null;
-
-
-//$count = $consulations->count();
-
 $form->prepare();
-
-
 ?>
 
 <div class="container">
@@ -112,8 +104,5 @@ $form->prepare();
             </div>
         </div>
     <?php endif; ?>
-
-
-
 </div>
 
