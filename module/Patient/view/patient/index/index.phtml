@@ -62,14 +62,16 @@ $form->prepare();
                             <td>Date de consultation</td>
                             <td>Titre</td>
                             <td>Remarque</td>
+                            <td></td>
                         </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($consulations as $consultation): ?>
                             <tr>
-                                <td><?php // $consultation->getCreatedDate()- ?></td>
+                                <td><?=  $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
                                 <td><?= $consultation->getTitle() ?></td>
                                 <td><?= $consultation->getDescription() ?></td>
+                                <td><a href="#" class="btn btn-sm btn-info">Voir</a></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
