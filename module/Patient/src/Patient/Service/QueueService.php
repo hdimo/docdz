@@ -42,9 +42,10 @@ class QueueService implements FactoryInterface
         $this->em->flush();
     }
 
-    public function getAll(array $params)
+    public function getList(array $params = null)
     {
-
+        $list = $this->em->getRepository('Application\Entity\Queue')->getList($params);
+        return $list;
     }
 
     public function getListOfToday()
@@ -55,7 +56,9 @@ class QueueService implements FactoryInterface
 
     public function getNext()
     {
-        $current = $this->em->getRepository('Application\Entity\Queue')->getNext();
+        $current = $this->em->getRepository('Application\Entity\Queue')->getListOfToday();
+        if($current)
+            return $current[0];
         return $current;
     }
 

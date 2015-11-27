@@ -15,6 +15,9 @@ use Doctrine\ORM\EntityRepository;
 class QueueRepository extends EntityRepository
 {
 
+    /**
+     * @return array
+     */
 
     public function getListOfToday()
     {
@@ -33,21 +36,39 @@ class QueueRepository extends EntityRepository
         return $result;
     }
 
-    public function getNext(){
-        $today = date('Y-m-d');
+    /**
+     * @param array|null $params
+     * @return mixed
+     */
+    public function getList(array $params = null)
+    {
         $qb = $this->_em->createQueryBuilder();
         $qb->select('q')
-            ->from('\Application\Entity\Queue', 'q')
-            ->join('q.patient', 'p')
-            ->where(
-                $qb->expr()->eq('q.workedDay', "'$today'")
-            )
-            ->andWhere('q.isWaiting = 1')
-            ->orderBy('q.createdDate', 'ASC');
-        $result = @$qb->getQuery()->getResult()[0];
+            ->from('\Application\Entity\Queue', 'q');
+
+        $dateTo = date('Y-m-d');
+        if (isset($params['dateTo'])) {
+            $dateTo = $params['dateTo'];
+            unset($params['dateTo']);
+        }
+
+        $conditions = $qb->expr()->eq('q.workedDay', "'$dateTo'");
+        if (isset($params['dateFrom'])) {
+            $conditions = "q.workedDay BETWEEN {$params['dateFrom']} AND {$dateTo}";
+            unset($params['dateFrom']);
+        }
+        $qb->where($conditions);
+
+        //if any other equal condition
+        if (is_array($params)) {
+            foreach ($params as $key => $value) {
+                $query = "q.{$key}={$value}";
+                $qb->andWhere($query);
+            }
+        }
+
+        $result = @$qb->getQuery()->getResult();
         return $result;
     }
-
-
 
 }

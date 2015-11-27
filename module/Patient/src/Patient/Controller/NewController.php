@@ -8,19 +8,14 @@
 
 namespace Patient\Controller;
 
-
-use Application\Entity\Patient;
 use Patient\Form\NewPatientForm;
 use Zend\View\Model\ViewModel;
 
 class NewController extends PatientBaseController
 {
-
     public function indexAction()
     {
         $form = new NewPatientForm();
-
-
         $var = [
             'form' => $form,
         ];
@@ -30,21 +25,17 @@ class NewController extends PatientBaseController
 
     public function processAction()
     {
-
         $view = new ViewModel();
         $view->setTemplate('patient/new/index');
 
         $data = $this->params()->fromPost();
         $form = new NewPatientForm();
         $form->setData($data);
-
         if ($form->isValid()) {
             $lastInsertedPatientId = $this->serviceLocator->get(\Patient\Service\PatientService::class)
                 ->save($data);
-
             $this->getServiceLocator()->get(\Patient\Service\QueueService::class)
                 ->push($lastInsertedPatientId);
-
             $this->redirect()->toRoute('patient/default', ['controller' => 'new', 'action' => 'success']);
         }
 

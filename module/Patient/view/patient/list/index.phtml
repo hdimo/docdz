@@ -7,22 +7,29 @@ $listPatient = $this->listPatients;
     <div class="container">
 
         <div class="row">
-            <h5>Liste des patients</h5>
+            <div class="col-md-12">
+                <h5>Liste des patients</h5>
 
-            <form method="post"
-                  action="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>"
-                  class="form-horizontal">
-                <p>Verifier s'il existe dans la base de données</p>
+                <form method="post"
+                      action="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>"
+                      class="form-horizontal">
+                    <p>Verifier s'il existe dans la base de données</p>
 
-                <div class="col-md-4">
-                    <input name="patientId" id="patientId" type="hidden" value="">
-                    <input id="search" type="text" class="form-control typeahead" id="name" placeholder="Nom Patient ">
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary btn-block">Ajouter a la liste</button>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input name="patientId" id="patientId" type="hidden" value="">
+                            <input id="search" type="text" class="form-control typeahead" id="name"
+                                   placeholder="Nom Patient ">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary btn-block">Ajouter a la liste</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <hr>
 
         <div class="gap"></div>
         <div class="row">
@@ -34,13 +41,13 @@ $listPatient = $this->listPatients;
                             <?php foreach ($listPatient as $queueRow): ?>
                                 <li>
                                     <div class="row">
-                                        <div class="col-lg-8">
+                                        <div class="col-md-8">
                                             <p>
                                                 <?= $queueRow->getPatient()->getLastname(); ?>
                                                 <?= $queueRow->getPatient()->getFirstname(); ?>
                                             </p>
                                         </div>
-                                        <div class="col-lg-4 text-right">
+                                        <div class="col-md-4 text-right">
                                             <a href="" class="btn btn-info">detail</a>
                                             <a href="" class="btn btn-danger">&times;</a>
                                         </div>
@@ -53,13 +60,10 @@ $listPatient = $this->listPatients;
                 <!-- Trends widget end -->
             </div>
             <div class="col-md-6">
-
-
+                <p>Nombre de patient en attente aujourd'hui <span>(<?= $this->nbrWaiting ?>)</span></p>
+                <p>Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span></p>
             </div>
-
-
         </div>
-
     </div>
 
 <?php $this->inlineScript()->captureStart();

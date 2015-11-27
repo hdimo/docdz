@@ -16,15 +16,12 @@
 
     <?php
     echo $this->headLink()
-
         ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
         ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
         ->prependStylesheet($this->basePath('js/flexslider/flexslider-post.css'))
-
         ->prependStylesheet($this->basePath('js/meanmenu/meanmenu.css'))
         ->prependStylesheet($this->basePath('css/typicons/typicons.min.css'))
         ->prependStylesheet($this->basePath('js/owl-carousel/owl.carousel.css'))
-
         ->prependStylesheet($this->basePath('css/superfish/superfish.css'))
         ->prependStylesheet($this->basePath('css/master.css'))
         ->prependStylesheet($this->basePath('bootstrap3/css/bootstrap.css'))
@@ -42,7 +39,8 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="pm-header-logo-container">
-                        <a href="/"><img src="/img/medical-link.jpg" class="img-responsive pm-header-logo" alt="Medical-Link Template"></a>
+                        <a href="/"><img src="/img/medical-link.jpg" class="img-responsive pm-header-logo"
+                                         alt="Medical-Link Template"></a>
                     </div>
                 </div>
 
@@ -64,9 +62,12 @@
                     <nav class="navbar-collapse collapse" id="pm-main-navigation" style="display: block;">
                         <ul class="sf-menu pm-nav sf-js-enabled">
                             <li><a href="/" class="fa fa-home" id="pm-home-btn"></a></li>
-                            <li><a href="<?= $this->url('patient/default',['controller'=>'list']) ?>">List d'attente</a></li>
-                            <li><a href="<?= $this->url('patient/default',['controller'=>'index']) ?>">Patient encours</a></li>
-                            <li><a href="<?= $this->url('patient/default',['controller'=>'new']) ?>">Nouveau Patient</a></li>
+                            <li><a href="<?= $this->url('patient/default', ['controller' => 'list']) ?>">List
+                                    d'attente</a></li>
+                            <li><a href="<?= $this->url('patient/default', ['controller' => 'index']) ?>">Patient
+                                    encours</a></li>
+                            <li><a href="<?= $this->url('patient/default', ['controller' => 'new']) ?>">Nouveau
+                                    Patient</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -97,14 +98,18 @@
     </div>
     <hr>
 
-    <?= $this->content ?>
+
+
+        <?= $this->content ?>
+
 
     <!-- FOOTER -->
     <footer>
         <div class="container pm-containerPadding20">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 pm-center-mobile">
-                    <img src="/img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline" alt="Medical-Link">
+                    <img src="/img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline"
+                         alt="Medical-Link">
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <ul class="pm-footer-navigation l_tinynav1">

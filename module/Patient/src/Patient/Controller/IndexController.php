@@ -15,6 +15,9 @@ use Zend\View\Model\ViewModel;
 class IndexController extends PatientBaseController
 {
 
+    /**
+    * Display current patient
+    */
     public function indexAction()
     {
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
@@ -27,16 +30,10 @@ class IndexController extends PatientBaseController
     }
 
     public function processAction(){
-
         $data  = $this->params()->fromPost();
         $form = new ConsultationForm();
         $form->setData($data);
         if($form->isValid()){
-
-
-
-
         }
     }
-
 }
