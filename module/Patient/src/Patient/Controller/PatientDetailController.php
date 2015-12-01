@@ -6,7 +6,6 @@
 
 namespace Patient\Controller;
 
-
 use Zend\Http\PhpEnvironment\Response;
 use Zend\View\Model\ViewModel;
 
@@ -28,5 +27,4 @@ class PatientDetailController extends PatientBaseController
             return $response;
         }
     }
-
 }

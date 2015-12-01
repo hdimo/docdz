@@ -7,6 +7,8 @@
 namespace Patient\Controller;
 
 
+use Zend\View\Model\ViewModel;
+
 class ConsultationDetailController extends PatientBaseController
 {
 

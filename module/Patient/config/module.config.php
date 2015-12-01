@@ -19,6 +19,7 @@ return [
             'Patient\Controller\List'=>Patient\Controller\ListController::class,
             'Patient\Controller\AddConsultation'=>Patient\Controller\AddConsultationController::class,
             'Patient\Controller\PatientDetail'=>Patient\Controller\PatientDetailController::class,
+            'Patient\Controller\ConsultationDetail'=>Patient\Controller\ConsultationDetailController::class,
         ],
     ],
 

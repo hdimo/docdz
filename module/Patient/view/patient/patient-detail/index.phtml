@@ -62,10 +62,10 @@ $patient = $this->patient;
                     <tbody>
                     <?php foreach ($patient->getConsultations() as $consultation): ?>
                         <tr>
-                            <td><?=  $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
+                            <td><?= $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
                             <td><?= $consultation->getTitle() ?></td>
                             <td><?= $consultation->getDescription() ?></td>
-                            <td><a href="#" class="btn btn-sm btn-info">Voir</a></td>
+                            <td><a href="<?= $this->url('patient/default',['controller'=>'consultation-detail']) ?>?consultationId=<?= $consultation->getId() ?>" class="btn btn-sm btn-info">Voir</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
