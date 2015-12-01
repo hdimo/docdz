@@ -51,7 +51,6 @@ class QueueRepository extends EntityRepository
             $dateTo = $params['dateTo'];
             unset($params['dateTo']);
         }
-
         $conditions = $qb->expr()->eq('q.workedDay', "'$dateTo'");
         if (isset($params['dateFrom'])) {
             $conditions = "q.workedDay BETWEEN {$params['dateFrom']} AND {$dateTo}";
@@ -70,5 +69,6 @@ class QueueRepository extends EntityRepository
         $result = @$qb->getQuery()->getResult();
         return $result;
     }
+
 
 }

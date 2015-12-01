@@ -36,4 +36,14 @@ class IndexController extends PatientBaseController
         if($form->isValid()){
         }
     }
+
+
+    public function listAction(){
+        $patientService = $this->getServiceLocator()->get(\Patient\Service\PatientService::class);
+        $listPatient = $patientService->getListByName();
+       // print_r($listPatient);
+        return new ViewModel([
+            'listPatient'=>$listPatient,
+        ]);
+    }
 }

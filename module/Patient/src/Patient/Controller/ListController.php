@@ -17,8 +17,8 @@ class ListController extends PatientBaseController
     public function indexAction()
     {
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
-        $todayList = $queueService->getListOfToday();
 
+        $todayList = $queueService->getListOfToday();
         $nbrWaitingPatient = count($queueService->getList(['isWaiting' => 1]));
         $nbrTreatedPatient = count($queueService->getList(['isWaiting' => 0]));
 
@@ -27,6 +27,12 @@ class ListController extends PatientBaseController
             'nbrWaiting'=>$nbrWaitingPatient,
             'nbrTreated'=>$nbrTreatedPatient,
         ]);
+
+
+        //in case when is redirected from new user add
+        $error = $this->params()->fromRoute('errorUserExist');
+        $view->setVariable('errorUserExist', $error);
+
         return $view;
 
     }

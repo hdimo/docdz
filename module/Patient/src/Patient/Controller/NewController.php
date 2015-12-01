@@ -34,9 +34,15 @@ class NewController extends PatientBaseController
         if ($form->isValid()) {
             $lastInsertedPatientId = $this->serviceLocator->get(\Patient\Service\PatientService::class)
                 ->save($data);
-            $this->getServiceLocator()->get(\Patient\Service\QueueService::class)
+
+            $inserted = $this->getServiceLocator()->get(\Patient\Service\QueueService::class)
                 ->push($lastInsertedPatientId);
-            $this->redirect()->toRoute('patient/default', ['controller' => 'new', 'action' => 'success']);
+
+            $options = [];
+            if(!$inserted){
+                $options = ['errorUserExist'=>true];
+            }
+            $this->redirect()->toRoute('patient/default', ['controller' => 'new', 'action' => 'success'], $options);
         }
 
         $view->setVariables([

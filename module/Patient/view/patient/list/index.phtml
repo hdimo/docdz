@@ -29,6 +29,11 @@ $listPatient = $this->listPatients;
             </div>
         </div>
 
+        <?php if ($this->errorUserExist): ?>
+            <div class="alert alert-error">
+                Patient exist dans la file
+            </div>
+        <?php endif; ?>
         <hr>
 
         <div class="gap"></div>
@@ -61,6 +66,7 @@ $listPatient = $this->listPatients;
             </div>
             <div class="col-md-6">
                 <p>Nombre de patient en attente aujourd'hui <span>(<?= $this->nbrWaiting ?>)</span></p>
+
                 <p>Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span></p>
             </div>
         </div>

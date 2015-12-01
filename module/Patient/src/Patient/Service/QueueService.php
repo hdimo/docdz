@@ -35,11 +35,17 @@ class QueueService implements FactoryInterface
     public function push($patientId)
     {
         $patient = $this->em->find('Application\Entity\Patient', $patientId);
+
+        //check if patient exist in today queue
+        if(count($this->getList(['patient'=>$patientId])) > 0){
+            return false;
+        }
         $rowOfQueue = new Queue();
         $rowOfQueue->setPatient($patient);
         $rowOfQueue->setIsWaiting(true);
         $this->em->persist($rowOfQueue);
         $this->em->flush();
+        return $rowOfQueue->getId();
     }
 
     public function getList(array $params = null)
@@ -75,6 +81,12 @@ class QueueService implements FactoryInterface
             return $current->getId();
         }
         return false;
+    }
+
+    public function isExist(){
+
+       // $this->em->getRepository('Application\Entity\Queue')->
+
     }
 
 

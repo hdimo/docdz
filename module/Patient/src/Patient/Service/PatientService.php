@@ -45,7 +45,7 @@ class PatientService implements FactoryInterface
         return $patient->getId();
     }
 
-    public function getListByName($patientName)
+    public function getListByName($patientName = null)
     {
         $patientRepo = $this->em->getRepository('Application\Entity\Patient');
         return $patientRepo->getList($patientName);
@@ -55,4 +55,5 @@ class PatientService implements FactoryInterface
         $patient = $this->em->find('Application\Entity\Patient', $id);
         return $patient;
     }
+
 }
