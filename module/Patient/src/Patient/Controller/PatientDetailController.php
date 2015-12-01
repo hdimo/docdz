@@ -21,6 +21,10 @@ class PatientDetailController extends PatientBaseController
             $viewModel->setVariables([
                 'patient'=>$patient
             ]);
+
+            if($this->request->isXmlHttpRequest())
+                $viewModel->setTerminal(true);
+
             return $viewModel;
         }else{
             $response = $this->getResponse()->setStatusCode(Response::STATUS_CODE_404);

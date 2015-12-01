@@ -17,6 +17,7 @@
     <?php
     echo $this->headLink()
         ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
+        ->prependStylesheet($this->basePath('js/colorbox/colorbox.css'))
         ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
         ->prependStylesheet($this->basePath('js/flexslider/flexslider-post.css'))
         ->prependStylesheet($this->basePath('js/meanmenu/meanmenu.css'))
@@ -128,7 +129,7 @@
 <!-- Scripts -->
 <?php echo $this->headScript()
     ->prependFile($this->basePath('js/script.js'))
-    //->prependFile($this->basePath('js/ac.js'))
+    ->prependFile($this->basePath('js/colorbox/jquery.colorbox-min.js'))
     ->prependFile($this->basePath('js/superfish/superfish.js'))
     ->prependFile($this->basePath('js/typeahead.js'))
     ->prependFile($this->basePath('bootstrap3/js/bootstrap.min.js'))

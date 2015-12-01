@@ -2,108 +2,132 @@
 
 $form = $this->form;
 $form->setAttributes([
-    'action'=>$this->url('patient/default', ['controller'=>'add-consultation']),
-    'method'=>'post',
+    'action' => $this->url('patient/default', ['controller' => 'add-consultation']),
+    'method' => 'post',
 ]);
 
 
-$patient = ($this->current != null) ? $this->current->getPatient() : null ;
+$patient = ($this->current != null) ? $this->current->getPatient() : null;
 $consulations = $patient != null ? $patient->getConsultations() : null;
 $form->prepare();
 ?>
 
-<div class="container">
+    <div class="container">
 
-    <div class="row">
+        <div class="row">
+        </div>
+
+        <?php if ($patient): ?>
+            <div class="gap"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Information du Malade </h5>
+                    <table class="table">
+                        <tr>
+                            <td>Nom</td>
+                            <td><?= $patient->getLastname() ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Prenom</td>
+                            <td><?= $patient->getFirstname() ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Sex</td>
+                            <td><?= $patient->getGenderByName() ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Année de naissance</td>
+                            <td><?= $patient->getBirthYear() ?></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Nouvelle Consultation</h3>
+                    <?= $this->form()->openTag($form) ?>
+                    <?= $this->formelement($form->get('patientId')->setValue($patient->getId())) ?>
+                    <input type="hidden" name="currentId" value="<?= $current->getId() ?>"/>
+
+                    <div class="form-group">
+                        <label>Titre de consultation </label>
+                        <?= $this->formelement($form->get('title')) ?>
+                        <label>Description (remarques)</label>
+                        <?= $this->formelement($form->get('description')) ?>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-primary">Ajouter</button>
+                    </div>
+                    <?= $this->form()->closeTag() ?>
+
+                </div>
+
+            </div>
+
+            <!-- consultation -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>Consultations </h5>
+                    <?php if ($consulations->count() > 0): ?>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Date de consultation</th>
+                                <th>Titre</th>
+                                <th>Remarque</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($consulations as $consultation): ?>
+                                <tr>
+                                    <td><?= $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
+                                    <td><?= $consultation->getTitle() ?></td>
+                                    <td><?= $consultation->getDescription() ?></td>
+                                    <td>
+                                        <a id="<?= $consultation->getId() ?>"
+                                           href="<?= $this->url('patient/default', ['controller' => 'consultation-detail']) ?>?consultationId=<?= $consultation->getId() ?>"
+                                           class="btn btn-sm btn-info pop-btn">Voir</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else: ?>
+                        <div class="alert alert-info">
+                            <p>Pas de consultation precedentes !</p>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">Aucun patient en attente</div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 
-    <?php if ($patient): ?>
-        <div class="gap"></div>
-        <div class="row">
-            <div class="col-md-6">
-                <h5>Information du Malade </h5>
-                <table class="table">
-                    <tr>
-                        <td>Nom</td>
-                        <td><?= $patient->getLastname() ?></td>
-                    </tr>
+    <div class="popup" style="height: 100px;background: #fff;">
 
-                    <tr>
-                        <td>Prenom</td>
-                        <td><?= $patient->getFirstname() ?></td>
-                    </tr>
+    </div>
 
-                    <tr>
-                        <td>Sex</td>
-                        <td><?= $patient->getGenderByName() ?></td>
-                    </tr>
+<?php
 
-                    <tr>
-                        <td>Année de naissance</td>
-                        <td><?= $patient->getBirthYear() ?></td>
-                    </tr>
-                </table>
-            </div>
+$this->inlineScript()->captureStart();
+$baseUrl = trim($this->serverUrl());
+echo <<<JS
+    $(function(){
+        $('a.pop-btn').colorbox();
+    });
+JS;
+$this->inlineScript()->captureEnd();
 
-            <div class="col-md-6">
-                <h3>Nouvelle Consultation</h3>
-                <?= $this->form()->openTag($form)?>
-                <?= $this->formelement($form->get('patientId')->setValue($patient->getId()))?>
-                <input type="hidden" name="currentId" value="<?= $current->getId() ?>" />
-                <div class="form-group">
-                    <label>Titre de consultation </label>
-                    <?= $this->formelement($form->get('title'))?>
-                    <label>Description (remarques)</label>
-                    <?= $this->formelement($form->get('description'))?>
-                </div>
-                <div class="text-right">
-                    <button class="btn btn-primary">Ajouter</button>
-                </div>
-                <?= $this->form()->closeTag()?>
 
-            </div>
-           
-        </div>
 
-        <!-- consultation -->
-        <div class="row">
-             <div class="col-md-12">
-                <h5>Consultations </h5>
-                <?php if ($consulations->count() > 0): ?>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <td>Date de consultation</td>
-                            <td>Titre</td>
-                            <td>Remarque</td>
-                            <td></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($consulations as $consultation): ?>
-                            <tr>
-                                <td><?=  $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
-                                <td><?= $consultation->getTitle() ?></td>
-                                <td><?= $consultation->getDescription() ?></td>
-                                <td><a href="#" class="btn btn-sm btn-info">Voir</a></td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                <?php else: ?>
-                    <div class="alert alert-info">
-                        <p>Pas de consultation precedentes !</p>
-                    </div>
-                <?php endif; ?>
 
-            </div>
-        </div>
-    <?php else: ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-warning">Aucun patient en attente</div>
-            </div>
-        </div>
-    <?php endif; ?>
-</div>
 

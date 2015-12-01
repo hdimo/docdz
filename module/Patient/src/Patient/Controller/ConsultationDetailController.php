@@ -7,6 +7,7 @@
 namespace Patient\Controller;
 
 
+use Zend\Http\PhpEnvironment\Response;
 use Zend\View\Model\ViewModel;
 
 class ConsultationDetailController extends PatientBaseController
@@ -22,6 +23,8 @@ class ConsultationDetailController extends PatientBaseController
             $viewModel->setVariables([
                 'consultation'=>$consultation
             ]);
+            if($this->request->isXmlHttpRequest())
+                $viewModel->setTerminal(true);
             return $viewModel;
         }else{
             $response = $this->getResponse()->setStatusCode(Response::STATUS_CODE_404);

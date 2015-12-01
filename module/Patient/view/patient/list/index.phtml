@@ -53,7 +53,7 @@ $listPatient = $this->listPatients;
                                             </p>
                                         </div>
                                         <div class="col-md-4 text-right">
-                                            <a href="" class="btn btn-info">detail</a>
+                                            <a href="<?= $this->url('patient/default',['controller'=>'patient-detail'])?>?patientId=<?= $queueRow->getPatient()->getId()?>" class="btn btn-info pop-btn">detail</a>
                                             <a href="" class="btn btn-danger">&times;</a>
                                         </div>
                                     </div>
@@ -107,6 +107,10 @@ echo <<<JS
     }).bind('typeahead:close', function (event, data) {
         $('.tt-hint').css('background-image', '');
     });
+
+
+    $('a.pop-btn').colorbox();
+
 JS;
 
 $this->inlineScript()->captureEnd();
