@@ -40,24 +40,22 @@ class ListController extends PatientBaseController
 
 
     /**
-     * add patient to list
+     * add / remove patient to list
      */
     public function addtolistAction()
     {
         $patientId = $this->params()->fromPost('patientId');
-        if ($patientId) {
+        $rowId = $this->params()->fromQuery('rowId');
+        $action = $this->params()->fromQuery('action');
+        if ($patientId || $rowId) {
             $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
-            $queueService->push($patientId);
+            if($action == 'remove'){
+                $queueService->remove($rowId);
+            }else{
+                $queueService->push($patientId);
+            }
         }
         $this->redirect()->toRoute('patient/default', ['controller' => 'list']);
-    }
-
-    /**
-     * Remove patient from current List
-     */
-    public function removeFromListAction()
-    {
-
     }
 
     /**

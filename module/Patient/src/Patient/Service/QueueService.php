@@ -37,7 +37,7 @@ class QueueService implements FactoryInterface
         $patient = $this->em->find('Application\Entity\Patient', $patientId);
 
         //check if patient exist in today queue
-        if(count($this->getList(['patient'=>$patientId])) > 0){
+        if (count($this->getList(['patient' => $patientId])) > 0) {
             return false;
         }
         $rowOfQueue = new Queue();
@@ -63,7 +63,7 @@ class QueueService implements FactoryInterface
     public function getNext()
     {
         $current = $this->em->getRepository('Application\Entity\Queue')->getListOfToday();
-        if($current)
+        if ($current)
             return $current[0];
         return $current;
     }
@@ -73,7 +73,7 @@ class QueueService implements FactoryInterface
         $current = $this->em->find('Application\Entity\Queue', $queueId);
         if ($current) {
             foreach ($data as $property => $newValue) {
-                $setter = 'set'.ucfirst($property);
+                $setter = 'set' . ucfirst($property);
                 $current->$setter($newValue);
             }
             $this->em->persist($current);
@@ -83,10 +83,11 @@ class QueueService implements FactoryInterface
         return false;
     }
 
-    public function isExist(){
-
-       // $this->em->getRepository('Application\Entity\Queue')->
-
+    public function remove($queueId)
+    {
+        $current = $this->em->find('Application\Entity\Queue', $queueId);
+        $this->em->remove($current);
+        $this->em->flush();
     }
 
 
