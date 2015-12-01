@@ -5,20 +5,16 @@ $consultation = $this->consultation;
 $date = new DateTime();
 ?>
 <div class="container">
-
-       <div class="row">
-           <div class="col-md-12">
-
-
-               <h2><?= $consultation->getTitle() ?> - <?= $consultation->getCreatedDate()->format('d-m-Y') ?></h2>
-
-               <p>
-                   <?= $consultation->getDescription() ?>
-               </p>
-
-
-
-           </div>
-       </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                <?= $consultation->getTitle() ?> <i style="font-size: 16px;"> |
+                    le <?= $consultation->getCreatedDate()->format('d-m-Y \a H:i') ?></i>
+            </h3>
+            <p>
+                <?= $consultation->getDescription() ?>
+            </p>
+        </div>
+    </div>
 
 </div>

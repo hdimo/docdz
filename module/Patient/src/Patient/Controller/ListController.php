@@ -14,6 +14,11 @@ use Zend\View\Model\ViewModel;
 class ListController extends PatientBaseController
 {
 
+    /**
+     * display list of patient (Queue)
+     *
+     * @return ViewModel
+     */
     public function indexAction()
     {
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
@@ -24,19 +29,19 @@ class ListController extends PatientBaseController
 
         $view = new ViewModel([
             'listPatients' => $todayList,
-            'nbrWaiting'=>$nbrWaitingPatient,
-            'nbrTreated'=>$nbrTreatedPatient,
+            'nbrWaiting' => $nbrWaitingPatient,
+            'nbrTreated' => $nbrTreatedPatient,
         ]);
-
-
         //in case when is redirected from new user add
         $error = $this->params()->fromRoute('errorUserExist');
         $view->setVariable('errorUserExist', $error);
-
         return $view;
-
     }
 
+
+    /**
+     * add patient to list
+     */
     public function addtolistAction()
     {
         $patientId = $this->params()->fromPost('patientId');
@@ -47,6 +52,19 @@ class ListController extends PatientBaseController
         $this->redirect()->toRoute('patient/default', ['controller' => 'list']);
     }
 
+    /**
+     * Remove patient from current List
+     */
+    public function removeFromListAction()
+    {
+
+    }
+
+    /**
+     * @return list of patient name for autocomplete
+     *
+     * @return \Zend\Stdlib\ResponseInterface
+     */
     public function ajaxlistAction()
     {
         $q = $this->params()->fromQuery('q');
