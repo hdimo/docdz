@@ -37,5 +37,9 @@ class ConsultationService implements FactoryInterface
 
     }
 
-
+    public function getById($id){
+        $consultationId = (int) $id;
+        $consultation = $this->em->find('Application\Entity\Consultation', $consultationId);
+        return $consultation;
+    }
 }

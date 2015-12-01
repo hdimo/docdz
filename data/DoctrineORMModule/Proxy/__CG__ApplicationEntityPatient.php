@@ -275,6 +275,17 @@ class Patient extends \Application\Entity\Patient implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getAge()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAge', array());
+
+        return parent::getAge();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getPhone()
     {
 

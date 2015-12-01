@@ -135,6 +135,15 @@ class Patient {
     }
 
     /**
+     * @return bool|string
+     */
+    public function getAge(){
+        $currentYear = date('Y');
+        $age = $currentYear - $this->getBirthYear();
+        return $age;
+    }
+
+    /**
      * @return mixed
      */
     public function getPhone()

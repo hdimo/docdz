@@ -1,0 +1,82 @@
+<?php
+$patient = $this->patient;
+?>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>Nom</td>
+                    <td><?= $patient->getLastname() ?></td>
+                </tr>
+
+                <tr>
+                    <td>Prenom</td>
+                    <td><?= $patient->getFirstname() ?></td>
+                </tr>
+
+                <tr>
+                    <td>Sex</td>
+                    <td><?= $patient->getGender() ?></td>
+                </tr>
+
+                <tr>
+                    <td>Année de naissance</td>
+                    <td><?= $patient->getLastname() ?></td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><?= $patient->getAge() ?></td>
+                </tr>
+                <tr>
+                    <td>Telephone</td>
+                    <td><?= $patient->getPhone() ?></td>
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td><?= $patient->getAddress() ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- consultation -->
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Consultations </h5>
+            <?php if ($patient->getConsultations()->count() > 0): ?>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td>Date de consultation</td>
+                        <td>Titre</td>
+                        <td>Remarque</td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($patient->getConsultations() as $consultation): ?>
+                        <tr>
+                            <td><?=  $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
+                            <td><?= $consultation->getTitle() ?></td>
+                            <td><?= $consultation->getDescription() ?></td>
+                            <td><a href="#" class="btn btn-sm btn-info">Voir</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <div class="alert alert-info">
+                    <p>Pas de consultation precedentes !</p>
+                </div>
+            <?php endif; ?>
+
+        </div>
+    </div>
+
+</div>

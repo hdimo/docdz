@@ -29,6 +29,9 @@ class IndexController extends PatientBaseController
         ]);
     }
 
+    /**
+     * add new consultation to specific patient
+     */
     public function processAction(){
         $data  = $this->params()->fromPost();
         $form = new ConsultationForm();
@@ -37,11 +40,12 @@ class IndexController extends PatientBaseController
         }
     }
 
-
+    /**
+     * display list of patient
+     */
     public function listAction(){
         $patientService = $this->getServiceLocator()->get(\Patient\Service\PatientService::class);
         $listPatient = $patientService->getListByName();
-       // print_r($listPatient);
         return new ViewModel([
             'listPatient'=>$listPatient,
         ]);
