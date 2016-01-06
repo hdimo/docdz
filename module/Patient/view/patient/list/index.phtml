@@ -1,6 +1,7 @@
 <?php
 
 $listPatient = $this->listPatients;
+$listPatientTreated = $this->listPatientTreated;
 
 ?>
 
@@ -53,11 +54,11 @@ $listPatient = $this->listPatients;
                                             </p>
                                         </div>
                                         <div class="col-md-4 text-right">
-                                            <a href="<?= $this->url('patient/default',['controller'=>'patient-detail'])?>?patientId=<?= $queueRow->getPatient()->getId()?>"
+                                            <a href="<?= $this->url('patient/default', ['controller' => 'patient-detail']) ?>?patientId=<?= $queueRow->getPatient()->getId() ?>"
                                                class="btn btn-info pop-btn">
                                                 detail
                                             </a>
-                                            <a href="<?= $this->url('patient/default',['controller'=>'list', 'action'=>'addtolist'])?>?action=remove&rowId=<?= $queueRow->getId()?>"
+                                            <a href="<?= $this->url('patient/default', ['controller' => 'list', 'action' => 'addtolist']) ?>?action=remove&rowId=<?= $queueRow->getId() ?>"
                                                class="btn btn-danger">&times;</a>
                                         </div>
                                     </div>
@@ -69,41 +70,30 @@ $listPatient = $this->listPatients;
                 <!-- Trends widget end -->
             </div>
             <div class="col-md-6">
-                <p>Nombre de patient en attente aujourd'hui <span>(<?= $this->nbrWaiting ?>)</span></p>
-
-                <p><a href="#patient-treated-pop" class="btn-pop"> Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span></a></p>
-            </div>
-        </div>
-    </div>
-
-    <?php  if($this->nbrTreated > 0):?>
-    <div id="patient-treated-pop" class="container">
-        <div class="row">
-            <div class="col-md-12">
+                <p>
+                    Nombre de patient en attente aujourd'hui <span>(<?= $this->nbrWaiting ?>)</span>
+                </p>
+                <p>
+                    <a id="display-treated-list" href="javascript:;">
+                        Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span>
+                    </a>
+                </p>
                 <!-- Trends widget -->
-                <div class="pm-widget">
-                    <div class="pm-sidebar-padding">
-                        <ul class="pm-trends-list">
-                            <?php foreach ($this->listPatientTreated as $queueRow): ?>
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <p>
-                                                <?= $queueRow->getPatient()->getLastname(); ?>
-                                                <?= $queueRow->getPatient()->getFirstname(); ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                </div>
+                <?php if ($this->nbrTreated > 0): ?>
+                    <ul id="treated-list" class="list-group" style="display: none;">
+                        <?php foreach ($listPatientTreated as $queueRow): ?>
+                            <li class="list-group-item">
+                                <?= $queueRow->getPatient()->getLastname(); ?>
+                                <?= $queueRow->getPatient()->getFirstname(); ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
                 <!-- Trends widget end -->
             </div>
         </div>
     </div>
-    <?php endif;?>
+
 
 <?php $this->inlineScript()->captureStart();
 echo <<<JS
@@ -143,6 +133,9 @@ echo <<<JS
 
 
     $('a.pop-btn').colorbox();
+    $("#display-treated-list").click(function() {
+      $( "#treated-list" ).slideToggle(50);
+});
 
 JS;
 

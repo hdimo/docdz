@@ -29,9 +29,7 @@ class QueueRepository extends EntityRepository
             ->where(
                 $qb->expr()->eq('q.workedDay', "'$today'")
             )
-            ->andWhere('q.isWaiting = 1')
             ->orderBy('q.createdDate', 'ASC');
-
         if(is_array($condition)){
             foreach($condition as $field=>$value){
                 if($value !== null)

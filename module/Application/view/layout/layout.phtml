@@ -20,10 +20,8 @@
         ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
         ->prependStylesheet($this->basePath('js/colorbox/colorbox.css'))
         ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
-        ->prependStylesheet($this->basePath('js/flexslider/flexslider-post.css'))
         ->prependStylesheet($this->basePath('js/meanmenu/meanmenu.css'))
         ->prependStylesheet($this->basePath('css/typicons/typicons.min.css'))
-        ->prependStylesheet($this->basePath('js/owl-carousel/owl.carousel.css'))
         ->prependStylesheet($this->basePath('css/superfish/superfish.css'))
         ->prependStylesheet($this->basePath('css/master.css'))
         ->prependStylesheet($this->basePath('bootstrap3/css/bootstrap.css'))
@@ -35,7 +33,6 @@
 <body>
 
 <div class="wrapper">
-
     <header>
         <div class="container">
             <div class="row">
@@ -45,7 +42,6 @@
                                          alt="Medical-Link Template"></a>
                     </div>
                 </div>
-
                 <div class="col-lg-8 col-md-8 col-sm-12">
                     <!--
                     <ul class="pm-header-info">
@@ -65,15 +61,19 @@
                         <ul class="sf-menu pm-nav sf-js-enabled">
                             <li><a href="/" class="fa fa-home" id="pm-home-btn"></a></li>
                             <li><a href="<?= $this->url('patient/default', ['controller' => 'list']) ?>">List
-                                    d'attente</a></li>
+                                    d'attente</a>
+                            </li>
                             <li><a href="<?= $this->url('patient/default', ['controller' => 'index']) ?>">Patient
-                                    encours</a></li>
+                                    encours</a>
+                            </li>
                             <li><a href="<?= $this->url('patient/default', ['controller' => 'new']) ?>">Nouveau
-                                    Patient</a></li>
+                                    Patient</a>
+                            </li>
 
                             <li>
                                 <a href="<?= $this->url('patient/default', ['controller' => 'index', 'action' => 'list']) ?>">
-                                    Mes Patient</a></li>
+                                    Mes Patient</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -111,7 +111,7 @@
 </div>
 <div class="gap"></div>
 
-<!-- FOOTER -->
+<!-- FOOTER --
 <footer class="footer">
     <div class="container pm-containerPadding20">
         <div class="row">
@@ -128,7 +128,7 @@
         </div>
     </div>
 </footer>
-
+-->
 <!-- Scripts -->
 <?php echo $this->headScript()
     ->prependFile($this->basePath('js/script.js'))

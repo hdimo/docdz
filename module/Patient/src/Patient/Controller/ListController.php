@@ -23,13 +23,14 @@ class ListController extends PatientBaseController
     {
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
 
-        $todayList = $queueService->getListOfToday();
-        $nbrWaitingPatient = count($queueService->getListOfToday(['isWaiting' => 1]));
+        $todayList = $queueService->getListOfToday(['isWaiting' => 1]);
+        $nbrWaitingPatient = count($todayList);
         $listPatientTreated = $queueService->getListOfToday(['isWaiting' => 0]);
         $nbrTreatedPatient = count($listPatientTreated);
 
         $view = new ViewModel([
             'listPatients' => $todayList,
+            'listPatientTreated' => $listPatientTreated,
             'nbrWaiting' => $nbrWaitingPatient,
             'nbrTreated' => $nbrTreatedPatient,
         ]);
