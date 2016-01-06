@@ -24,8 +24,9 @@ class ListController extends PatientBaseController
         $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
 
         $todayList = $queueService->getListOfToday();
-        $nbrWaitingPatient = count($queueService->getList(['isWaiting' => 1]));
-        $nbrTreatedPatient = count($queueService->getList(['isWaiting' => 0]));
+        $nbrWaitingPatient = count($queueService->getListOfToday(['isWaiting' => 1]));
+        $listPatientTreated = $queueService->getListOfToday(['isWaiting' => 0]);
+        $nbrTreatedPatient = count($listPatientTreated);
 
         $view = new ViewModel([
             'listPatients' => $todayList,
@@ -49,9 +50,9 @@ class ListController extends PatientBaseController
         $action = $this->params()->fromQuery('action');
         if ($patientId || $rowId) {
             $queueService = $this->getServiceLocator()->get(\Patient\Service\QueueService::class);
-            if($action == 'remove'){
+            if ($action == 'remove') {
                 $queueService->remove($rowId);
-            }else{
+            } else {
                 $queueService->push($patientId);
             }
         }

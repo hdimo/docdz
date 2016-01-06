@@ -54,9 +54,9 @@ class QueueService implements FactoryInterface
         return $list;
     }
 
-    public function getListOfToday()
+    public function getListOfToday(array $condition = null)
     {
-        $list = $this->em->getRepository('Application\Entity\Queue')->getListOfToday();
+        $list = $this->em->getRepository('Application\Entity\Queue')->getListOfToday($condition);
         return $list;
     }
 

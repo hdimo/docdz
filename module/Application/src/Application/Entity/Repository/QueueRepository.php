@@ -19,7 +19,7 @@ class QueueRepository extends EntityRepository
      * @return array
      */
 
-    public function getListOfToday()
+    public function getListOfToday(array $condition = null)
     {
         $today = date('Y-m-d');
         $qb = $this->_em->createQueryBuilder();
@@ -32,11 +32,20 @@ class QueueRepository extends EntityRepository
             ->andWhere('q.isWaiting = 1')
             ->orderBy('q.createdDate', 'ASC');
 
+        if(is_array($condition)){
+            foreach($condition as $field=>$value){
+                if($value !== null)
+                    $qb->andWhere("q.{$field} = {$value}");
+            }
+        }
+
         $result = $qb->getQuery()->getResult();
         return $result;
     }
 
     /**
+     *
+     *
      * @param array|null $params
      * @return mixed
      */
@@ -46,17 +55,6 @@ class QueueRepository extends EntityRepository
         $qb->select('q')
             ->from('\Application\Entity\Queue', 'q');
 
-        $dateTo = date('Y-m-d');
-        if (isset($params['dateTo'])) {
-            $dateTo = $params['dateTo'];
-            unset($params['dateTo']);
-        }
-        $conditions = $qb->expr()->eq('q.workedDay', "'$dateTo'");
-        if (isset($params['dateFrom'])) {
-            $conditions = "q.workedDay BETWEEN {$params['dateFrom']} AND {$dateTo}";
-            unset($params['dateFrom']);
-        }
-        $qb->where($conditions);
 
         //if any other equal condition
         if (is_array($params)) {
@@ -65,7 +63,6 @@ class QueueRepository extends EntityRepository
                 $qb->andWhere($query);
             }
         }
-
         $result = @$qb->getQuery()->getResult();
         return $result;
     }

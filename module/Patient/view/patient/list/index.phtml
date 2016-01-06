@@ -71,10 +71,39 @@ $listPatient = $this->listPatients;
             <div class="col-md-6">
                 <p>Nombre de patient en attente aujourd'hui <span>(<?= $this->nbrWaiting ?>)</span></p>
 
-                <p>Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span></p>
+                <p><a href="#patient-treated-pop" class="btn-pop"> Nombre de patient traiter aujourd'hui <span>(<?= $this->nbrTreated ?>)</span></a></p>
             </div>
         </div>
     </div>
+
+    <?php  if($this->nbrTreated > 0):?>
+    <div id="patient-treated-pop" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Trends widget -->
+                <div class="pm-widget">
+                    <div class="pm-sidebar-padding">
+                        <ul class="pm-trends-list">
+                            <?php foreach ($this->listPatientTreated as $queueRow): ?>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p>
+                                                <?= $queueRow->getPatient()->getLastname(); ?>
+                                                <?= $queueRow->getPatient()->getFirstname(); ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Trends widget end -->
+            </div>
+        </div>
+    </div>
+    <?php endif;?>
 
 <?php $this->inlineScript()->captureStart();
 echo <<<JS

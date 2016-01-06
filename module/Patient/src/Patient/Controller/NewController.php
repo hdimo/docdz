@@ -53,8 +53,7 @@ class NewController extends PatientBaseController
 
     public function successAction()
     {
-        echo 'success';
-        return false;
+       return new ViewModel();
     }
 
 }

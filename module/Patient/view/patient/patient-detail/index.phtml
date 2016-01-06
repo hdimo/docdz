@@ -20,7 +20,7 @@ $patient = $this->patient;
 
                 <tr>
                     <td>Sex</td>
-                    <td><?= $patient->getGender() ?></td>
+                    <td><?= $patient->getGenderByName() ?></td>
                 </tr>
 
                 <tr>
@@ -65,8 +65,12 @@ $patient = $this->patient;
                             <td><?= $consultation->getCreatedDate()->format('d/m/Y \a H:i') ?></td>
                             <td><?= $consultation->getTitle() ?></td>
                             <td><?= $consultation->getDescription() ?></td>
-                            <td><a href="<?= $this->url('patient/default',['controller'=>'consultation-detail']) ?>?consultationId=<?= $consultation->getId() ?>"
-                                   class="btn btn-sm btn-info pop-btn">Voir</a></td>
+                            <td>
+                                <a href="<?= $this->url('patient/default', ['controller' => 'consultation-detail']) ?>?consultationId=<?= $consultation->getId() ?>"
+                                   class="btn btn-sm btn-info pop-btn">
+                                    Voir
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
@@ -83,8 +87,13 @@ $patient = $this->patient;
 </div>
 
 
-    <script>
-        $(function(){
-            $('a.pop-btn').colorbox();
-        });
-    </script>
+<?php
+$this->inlineScript()->CaptureStart();
+echo <<<JS
+        $(function () {
+        $('a.pop-btn').colorbox();
+    });
+JS;
+$this->inlineScript()->CaptureEnd();
+?>
+

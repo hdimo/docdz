@@ -16,6 +16,7 @@
 
     <?php
     echo $this->headLink()
+        ->prependStylesheet($this->basePath('css/mystyle.css'))
         ->prependStylesheet($this->basePath('css/jquery-ui/jquery-ui.css'))
         ->prependStylesheet($this->basePath('js/colorbox/colorbox.css'))
         ->prependStylesheet($this->basePath('js/prettyphoto/css/prettyPhoto.css'))
@@ -70,8 +71,9 @@
                             <li><a href="<?= $this->url('patient/default', ['controller' => 'new']) ?>">Nouveau
                                     Patient</a></li>
 
-                            <li><a href="<?= $this->url('patient/default', ['controller' => 'index', 'action'=>'list']) ?>">
-                                   Mes Patient</a></li>
+                            <li>
+                                <a href="<?= $this->url('patient/default', ['controller' => 'index', 'action' => 'list']) ?>">
+                                    Mes Patient</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -102,29 +104,30 @@
     </div>
     <hr>
 
+    <?= $this->content ?>
 
+    <div class="gap"></div>
 
-        <?= $this->content ?>
+</div>
+<div class="gap"></div>
 
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container pm-containerPadding20">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 pm-center-mobile">
-                    <img src="/img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline"
-                         alt="Medical-Link">
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12">
-                    <ul class="pm-footer-navigation l_tinynav1">
-                        <li><a href="/" class="active">Home</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container pm-containerPadding20">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 pm-center-mobile">
+                <img src="/img/medical-link.jpg" width="264" height="81" class="img-responsive pm-inline"
+                     alt="Medical-Link">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                <ul class="pm-footer-navigation l_tinynav1">
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
 
 <!-- Scripts -->
 <?php echo $this->headScript()
